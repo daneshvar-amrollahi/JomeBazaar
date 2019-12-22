@@ -118,10 +118,8 @@ void evaluate(vector < pair<string, int> > comments, unordered_map<string, doubl
 {
 	int correct_detected_appropriate = 0, all_appropriate = 0;
 	int detected_appropriate = 0, correct_detected = 0;
-	for (int i = 0 ; i < 20 ; i++)
+	for (int i = 0 ; i < comments.size() ; i++)
 	{
-		if (i % 100 == 0)
-			cout << i << endl;
 		string comment = comments[i].first;
 		int is_bad = comments[i].second;
 		int detected_bad = isBad(comment, good, bad);
