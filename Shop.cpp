@@ -1089,13 +1089,19 @@ void Shop::addToCart(vector <string> query)
 
 		if (d == NULL)
 			throw &bad_request;
+
+		//discount besooze
+		for (int i = 0 ; i < discounts.size() ; i++)
+			if (discounts[i]->getCode() == query[8])
+			{
+				discounts.erase(discounts.begin() + i);
+				return;
+			}
+			
+
 		if (d->getOffer() != offer)
 			throw &bad_request;
-		if (d->getNumber() == 0)
-			throw&bad_request;
-
 		disc = d->getPercent();
-		d->decreaseNumber();
 	}
 
 	buyer->addToCart(offer, want, disc);
@@ -1120,8 +1126,12 @@ void Shop::generateDiscount(vector <string> query)
 
 	double percent = stod(query[6]);
 	int number = stoi(query[8]);
-	Discount* d = new Discount(percent, offer, number);
-	discounts.push_back(d);
+	for (int i = 0 ; i < number ; i++)
+	{
+		Discount* d = new Discount(percent, offer);
+		cout << d->getCode() << endl;
+		discounts.push_back(d);
+	}
 }
 
 Seller* Shop::getSellerByOfferId(int id)

@@ -1,7 +1,7 @@
 #include "Discount.hpp"
 #include <time.h>
 
-Discount::Discount(double _percent, Offer* _offer, int _number)
+Discount::Discount(double _percent, Offer* _offer)
 {
 	string _code = "";
 	vector <char> valid_char;
@@ -14,7 +14,6 @@ Discount::Discount(double _percent, Offer* _offer, int _number)
 
 	srand (time(NULL));
 	percent = _percent;
-	number = _number;
 	offer = _offer;
 	int sz = valid_char.size();
 	for (int i = 0 ; i < 15 ; i++)
