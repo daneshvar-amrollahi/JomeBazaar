@@ -37,4 +37,4 @@ POST signup ali 123
 POST login ? email admin@gmail.com unknown unkown
 DELETE this
 POST run test
-POST evaluateModel
+POST login ? email someone@gmail.com password 123456 

@@ -872,7 +872,9 @@ void Shop::postComment(vector <string> query)
 	unordered_map<string, double> good = this->getGoods();
 	unordered_map<string, double> bad = this->getBads();
 	if (isBad(comment, good, bad))
+	{
 		return;
+	}
 
 	addCommentForId(product_id, comment, currentUser->getUsername());
 }
