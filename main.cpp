@@ -120,6 +120,13 @@ bool isSubmitCart(vector <string> query)
 }
 
 
+bool isEvaluateModel(vector <string> query)
+{
+	if (query[1] != "evaluateModel")
+		return 0;
+	return 1;
+}
+
 void executePost(vector <string> query, Shop* shop)
 {
 	int sz = query.size();
@@ -194,6 +201,11 @@ void executePost(vector <string> query, Shop* shop)
 	{
 		shop->submitCart(query);
 		cout << "OK" << endl;
+		return;
+	}
+	if (isEvaluateModel(query))
+	{
+		shop->evaluateModel();
 		return;
 	}
 	cout << "Not Found" << endl;

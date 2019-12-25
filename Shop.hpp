@@ -17,6 +17,9 @@
 #include <cstddef>
 #include <type_traits>
 
+#include <unordered_map>
+#include <math.h>
+
 const int maxN = 2000 + 10;
 
 class Shop
@@ -109,6 +112,15 @@ public:
 
 
 	long long getHash(string s);
+
+	void evaluateModel();
+
+	void evaluate(vector < pair<string, int> > comments, unordered_map<string, double> good, unordered_map<string, double> bad);
+
+	unordered_map<string, double> getGoods();
+	unordered_map<string, double> getBads();
+	int isBad(string comment, unordered_map<string, double> good, unordered_map<string, double> bad);
+	vector < pair<string, int> > readComments();
 
 
 
