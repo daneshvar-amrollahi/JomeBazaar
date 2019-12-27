@@ -854,6 +854,7 @@ void Shop::postComment(vector <string> query)
 {
 	if (query.size() < 7)
 		throw &bad_request;
+	
 	if (query[2] != "?" || query[3] != "productId" || query[5] != "comment")
 		throw &not_found;
 	if (!isBuyer(currentUser->getUsername()))
