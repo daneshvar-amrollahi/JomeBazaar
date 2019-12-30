@@ -74,6 +74,7 @@ $(BUILD_DIR)/main.o: main.cpp server/server.hpp utils/utilities.hpp utils/respon
 a.out: $(BUILD_DIR)/main.o $(BUILD_DIR)/Shop.o $(BUILD_DIR)/User.o $(BUILD_DIR)/Admin.o $(BUILD_DIR)/Seller.o $(BUILD_DIR)/Buyer.o $(BUILD_DIR)/Product.o $(BUILD_DIR)/Mobile.o $(BUILD_DIR)/Car.o $(BUILD_DIR)/Tv.o $(BUILD_DIR)/Offer.o $(BUILD_DIR)/Discount.o $(BUILD_DIR)/Order.o $(BUILD_DIR)/my_server.o $(BUILD_DIR)/handlers.o $(BUILD_DIR)/response.o $(BUILD_DIR)/request.o $(BUILD_DIR)/utilities.o $(BUILD_DIR)/server.o $(BUILD_DIR)/route.o
 	$(CC) $(CF) $(BUILD_DIR)/main.o $(BUILD_DIR)/Shop.o $(BUILD_DIR)/User.o $(BUILD_DIR)/Admin.o $(BUILD_DIR)/Seller.o $(BUILD_DIR)/Buyer.o $(BUILD_DIR)/Product.o $(BUILD_DIR)/Mobile.o $(BUILD_DIR)/Car.o $(BUILD_DIR)/Tv.o $(BUILD_DIR)/Offer.o $(BUILD_DIR)/Discount.o $(BUILD_DIR)/Order.o $(BUILD_DIR)/my_server.o $(BUILD_DIR)/handlers.o $(BUILD_DIR)/response.o $(BUILD_DIR)/request.o $(BUILD_DIR)/utilities.o $(BUILD_DIR)/server.o $(BUILD_DIR)/route.o
 
+
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR) *.o *.out &> /dev/null
