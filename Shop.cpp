@@ -1389,6 +1389,8 @@ int Shop::isBad(string comment, unordered_map<string, double> good, unordered_ma
 		}
 		
 	}
+	ham += (long double)(log(0.91175));
+	spam += (long double)(log(1-0.91175));
 	return (spam > ham);
 }
 
