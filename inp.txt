@@ -1,4 +1,0 @@
-POST signup ? email ali@gmail.com username ali password ali type seller
-POST logout
-POST login ? email ali@gmail.com password pass
-POST login ? email admin@gmail.com password admins
