@@ -110,6 +110,8 @@ public:
 
 	long long getHash(string s);
 
+	User* getCurrentUser() {return currentUser;}
+
 
 
 private:
