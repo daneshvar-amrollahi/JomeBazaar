@@ -5,6 +5,7 @@
 #include <cstdlib> // for rand and srand
 #include <ctime>   // for time
 #include <iostream>
+#include "Shop.hpp"
 
 class RandomNumberHandler : public RequestHandler {
 public:
@@ -19,6 +20,14 @@ public:
 class UploadHandler : public RequestHandler {
 public:
   Response *callback(Request *);
+};
+
+class SignUpHandler : public RequestHandler {
+  private:
+    Shop* shop;
+  public:
+    SignUpHandler(Shop* _shop) {shop = _shop;}
+    Response *callback(Request *);
 };
 
 #endif

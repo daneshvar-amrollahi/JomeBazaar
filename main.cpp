@@ -1,5 +1,9 @@
 #include <iostream>
 #include "Shop.hpp"
+#include "handlers.hpp"
+#include "my_server.hpp"
+#include <cstdlib> // for rand and srand
+#include <ctime>   // for time
 
 using namespace std;
 
@@ -21,6 +25,7 @@ using namespace std;
 #define CHANGE_OFFER_INDEX 1
 
 
+<<<<<<< HEAD
 vector <string> splitBySpace(string s)
 {
 	vector <string> ans;
@@ -353,21 +358,54 @@ void executeQuery(string line, Shop* shop)
 
 	cout << "Bad Request" << endl;
 }
+=======
+>>>>>>> b1
 
+/*
 int main()
 {
 	Shop shop;
 	string line;
 	while (getline(cin, line))
 	{
-		bool err = 0;
 		try{
 			executeQuery(line, &shop);
 		}
 		catch (exception *ex) {
-			err = 1;
 			cout << ex->what() << "\n";
 		}
 	}
 	return 0;
+<<<<<<< HEAD
 }
+=======
+}
+*/
+
+int main(int argc, char **argv) 
+{
+	Shop shop;
+	srand(time(NULL)); // for rand
+	try {
+    	MyServer server(argc > 1 ? atoi(argv[1]) : 5000);
+
+		if (shop.getCurrentUser() == NULL)
+			server.get("/", new ShowPage("static/home.html"));
+
+		string logged_in_type = (shop.getCurrentUser())->getType();
+		if (logged_in_type == "admin")
+			server.get("/", new ShowPage("static/admin_home.html"));
+		
+		server.get("/home.png", new ShowImage("static/home.png"));
+
+
+		server.get("/signup", new ShowPage("static/signup.html"));
+		server.post("/signup", new SignUpHandler(&shop));
+
+    	server.run();
+  	} catch (Server::Exception *ex) {
+    	cerr << ex->what() << endl;
+  }
+}
+
+>>>>>>> b1
