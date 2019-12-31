@@ -113,7 +113,6 @@ public:
 
 	long long getHash(string s);
 
-<<<<<<< HEAD
 	void evaluateModel();
 
 	void evaluate(vector < pair<string, int> > comments, unordered_map<string, double> good, unordered_map<string, double> bad);
@@ -122,9 +121,8 @@ public:
 	unordered_map<string, double> getBads();
 	int isBad(string comment, unordered_map<string, double> good, unordered_map<string, double> bad);
 	vector < pair<string, int> > readComments();
-=======
+
 	User* getCurrentUser() {return currentUser;}
->>>>>>> b1
 
 
 
