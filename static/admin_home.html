@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <body style="text-align: center;">
+
+<body style="text-align: center;">
 
 
-    <h1>JomeBazaar</h1>
-    <form align="center" name="log_out_form" method="post" action="/logout">
-        <label class="logoutLblPos">
-        <input name="log_out" type="submit" id="log_out_submit" value="Log Out">
-        </label>
+  <h1>JomeBazaar</h1>
+  <form align="center" name="log_out_form" method="post" action="/logout">
+    <label class="logoutLblPos">
+      <input name="log_out" type="submit" id="log_out_submit" value="Log Out">
+    </label>
+  </form>
+  <h2>Admin Home Page</h2>
+  <div>
+    <form action="/adminup" method="post" enctype="multipart/form-data">
+      <input name="file_name" type="text" placeholder="File Name" />
+      <select name="Product Type">
+        <option name="mobile" value="mobile">Mobile</option>
+        <option name="car" value="car">Car</option>
+        <option name="tv" value="tv">Tv</option>
+      </select>
+      <input type="file" name="file">
+      <button type="submit">Upload</button>
     </form>
-    <h2>Admin Home Page</h2>
-    <div>
-      <form action="/adminup" method="post" enctype="multipart/form-data">
-        <input name="file_name" type="text" placeholder="File Name" />
-        <select name="Product Type">
-            <option name="mobile" value="mobile">Mobile</option>
-            <option name="car" value="car">Car</option>
-            <option name="tv" value="tv">Tv</option>
-        </select>
-        <input type="file" name="file">
-        <button type="submit" >Upload</button>
-      </form>
-    </div>
+  </div>
 
-  </body>
+</body>
+
 </html>

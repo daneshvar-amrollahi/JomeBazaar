@@ -7,23 +7,24 @@
 
 using namespace std;
 
-int main(int argc, char **argv) 
+int main(int argc, char **argv)
 {
 	Shop shop;
 	srand(time(NULL)); // for rand
-	try {
+	try
+	{
 
-    	MyServer server(argc > 1 ? atoi(argv[1]) : 5000);
+		MyServer server(argc > 1 ? atoi(argv[1]) : 5000);
 
-		User* currentUser = shop.getCurrentUser();
-		
+		User *currentUser = shop.getCurrentUser();
+
 		server.get("/nobodyLoggedIn", new ShowPage("static/home.html"));
 
 		server.get("/", new ShowPage("static/admin_home.html"));
 		server.get("/adminHome", new ShowPage("static/admin_home.html"));
 		server.get("/buyerHome", new ShowPage("static/buyer_home.html"));
 		server.get("/sellerHome", new ShowPage("static/seller_home.html"));
-		
+
 		server.get("/home.png", new ShowImage("static/home.png"));
 
 		server.get("/signup", new ShowPage("static/signup.html"));
@@ -31,10 +32,11 @@ int main(int argc, char **argv)
 
 		server.post("/logout", new LogOutHandler(&shop));
 
-    	server.run();
-
-  	} catch (Server::Exception ex) {
-    	cerr << ex.what() << endl;
-  	}
-  return 0;
+		server.run();
+	}
+	catch (Server::Exception ex)
+	{
+		cerr << ex.what() << endl;
+	}
+	return 0;
 }

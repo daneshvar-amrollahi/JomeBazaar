@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 #define POST "POST"
 #define GET "GET"
 #define firstIndex 0
@@ -23,14 +22,13 @@ using namespace std;
 #define OFFER_INDEX 1
 #define CHANGE_OFFER_INDEX 1
 
-
-vector <string> splitBySpace(string s)
+vector<string> splitBySpace(string s)
 {
-	vector <string> ans;
+	vector<string> ans;
 	string current = "";
-	for (int i = 0 ; i < s.size() ; i++)
+	for (int i = 0; i < s.size(); i++)
 	{
-		if (s[i] ==' ')
+		if (s[i] == ' ')
 		{
 			ans.push_back(current);
 			current = "";
@@ -42,88 +40,84 @@ vector <string> splitBySpace(string s)
 	return ans;
 }
 
-bool isSignUp(vector <string> query)
+bool isSignUp(vector<string> query)
 {
 	if (query[SINGUP_INDEX] == "signup")
 		return 1;
 	return 0;
 }
 
-bool isLogin(vector <string> query)
+bool isLogin(vector<string> query)
 {
 	if (query[LOGIN_INDEX] == "login")
 		return 1;
 	return 0;
 }
 
-bool islogOut(vector <string> query)
+bool islogOut(vector<string> query)
 {
 	if (query[LOGOUT_INDEX] != "logout")
 		return 0;
 	return 1;
 }
 
-bool isImport(vector <string> query)
+bool isImport(vector<string> query)
 {
-	if (query[IMPORT_INDEX] != "importProducts") 
+	if (query[IMPORT_INDEX] != "importProducts")
 		return 0;
 	return 1;
-
 }
 
-bool isOffer(vector <string> query)
+bool isOffer(vector<string> query)
 {
 	if (query[1] == "offer")
 		return 1;
 	return 0;
-
 }
 
-bool isChangeOffer(vector <string> query)
+bool isChangeOffer(vector<string> query)
 {
 	if (query[CHANGE_OFFER_INDEX] == "changeOffer")
 		return 1;
 	return 0;
-
 }
 
-bool isComment(vector <string> query)
+bool isComment(vector<string> query)
 {
 	if (query[1] != "comment")
 		return 0;
 	return 1;
 }
 
-bool isChargeWallet(vector <string> query)
+bool isChargeWallet(vector<string> query)
 {
 	if (query[1] != "chargeWallet")
 		return 0;
 	return 1;
 }
 
-bool isAddToCart(vector <string> query)
+bool isAddToCart(vector<string> query)
 {
 	if (query[1] != "addToCart")
 		return 0;
 	return 1;
 }
 
-bool isDiscountCode(vector <string> query)
+bool isDiscountCode(vector<string> query)
 {
 	if (query[1] != "generateDiscountCode")
 		return 0;
 	return 1;
 }
 
-bool isSubmitCart(vector <string> query)
+bool isSubmitCart(vector<string> query)
 {
 	if (query[1] != "submitCart")
 		return 0;
 	return 1;
 }
 
-
-void executePost(vector <string> query, Shop* shop)
+void executePost(vector<string> query, Shop *shop)
 {
 	int sz = query.size();
 	if (isSignUp(query))
@@ -132,7 +126,7 @@ void executePost(vector <string> query, Shop* shop)
 		cout << "OK" << endl;
 		return;
 	}
-	
+
 	if (isLogin(query))
 	{
 		shop->logIn(query);
@@ -172,14 +166,14 @@ void executePost(vector <string> query, Shop* shop)
 		cout << "OK" << endl;
 		return;
 	}
-	
+
 	if (isChargeWallet(query))
 	{
 		shop->chargeWallet(query);
 		cout << "OK" << endl;
 		return;
-	} 
-	
+	}
+
 	if (isDiscountCode(query))
 	{
 		shop->generateDiscount(query);
@@ -202,77 +196,77 @@ void executePost(vector <string> query, Shop* shop)
 	cout << "Not Found" << endl;
 }
 
-bool isGetProducts(vector <string> query)
+bool isGetProducts(vector<string> query)
 {
 	if (query[1] != "getProducts")
 		return 0;
 	return 1;
 }
 
-bool isGetMyOffers(vector <string> query)
+bool isGetMyOffers(vector<string> query)
 {
 	if (query[1] != "myOffers")
 		return 0;
 	return 1;
 }
 
-bool isGetOffers(vector <string> query)
+bool isGetOffers(vector<string> query)
 {
 	if (query[1] != "offers")
 		return 0;
 	return 1;
 }
 
-bool isGetOffersOnProduct(vector <string> query)
+bool isGetOffersOnProduct(vector<string> query)
 {
 	if (query[1] != "offersOnProduct")
 		return 0;
 	return 1;
 }
 
-bool isGetProductDetail(vector <string> query)
+bool isGetProductDetail(vector<string> query)
 {
 	if (query[1] != "productDetail")
 		return 0;
 	return 1;
 }
 
-bool isGetComments(vector <string> query)
+bool isGetComments(vector<string> query)
 {
 	if (query[1] != "comments")
 		return 0;
 	return 1;
 }
 
-bool isGetCompare(vector <string> query)
+bool isGetCompare(vector<string> query)
 {
 	if (query[1] != "compare")
 		return 0;
 	return 1;
 }
 
-bool isGetCart(vector <string> query)
+bool isGetCart(vector<string> query)
 {
 	if (query[1] != "cart")
 		return 0;
 	return 1;
 }
 
-bool isGetWalletCount(vector <string> query)
+bool isGetWalletCount(vector<string> query)
 {
 	if (query[1] != "wallet")
 		return 0;
 	return 1;
 }
 
-bool isGetOrders(vector <string> query)
+bool isGetOrders(vector<string> query)
 {
 	if (query[1] != "orders")
 		return 0;
 	return 1;
 }
 
-void executeGet(vector <string> query, Shop* shop)
+void executeGet(vector<string> query, Shop *shop)
 {
 	if (isGetProducts(query))
 	{
@@ -295,7 +289,7 @@ void executeGet(vector <string> query, Shop* shop)
 		return;
 	}
 	if (isGetProductDetail(query))
-	{	
+	{
 		shop->getProductDetail(query);
 		return;
 	}
@@ -327,13 +321,13 @@ void executeGet(vector <string> query, Shop* shop)
 	cout << "Not Found" << endl;
 }
 
-void executeQuery(string line, Shop* shop)
+void executeQuery(string line, Shop *shop)
 {
-	vector <string> query = splitBySpace(line);
+	vector<string> query = splitBySpace(line);
 	string firstWord = query[firstIndex];
 	if (firstWord == POST)
 	{
-		executePost(query, shop); 
+		executePost(query, shop);
 		return;
 	}
 	if (firstWord == GET)
@@ -345,42 +339,39 @@ void executeQuery(string line, Shop* shop)
 	cout << "Bad Request" << endl;
 }
 
-
-
-
-
-
-Response *RandomNumberHandler::callback(Request *req) {
-  Response *res = new Response;
-  res->setHeader("Content-Type", "text/html");
-  string body;
-  body += "<!DOCTYPE html>";
-  body += "<html>";
-  body += "<body style=\"text-align: center;\">";
-  body += "<h1>AP HTTP</h1>";
-  body += "<p>";
-  body += "a random number in [1, 10] is: ";
-  body += to_string(rand() % 10 + 1);
-  body += "</p>";
-  body += "<p>";
-  body += "SeddionId: ";
-  body += req->getSessionId();
-  body += "</p>";
-  body += "</body>";
-  body += "</html>";
-  res->setBody(body);
-  return res;
+Response *RandomNumberHandler::callback(Request *req)
+{
+	Response *res = new Response;
+	res->setHeader("Content-Type", "text/html");
+	string body;
+	body += "<!DOCTYPE html>";
+	body += "<html>";
+	body += "<body style=\"text-align: center;\">";
+	body += "<h1>AP HTTP</h1>";
+	body += "<p>";
+	body += "a random number in [1, 10] is: ";
+	body += to_string(rand() % 10 + 1);
+	body += "</p>";
+	body += "<p>";
+	body += "SeddionId: ";
+	body += req->getSessionId();
+	body += "</p>";
+	body += "</body>";
+	body += "</html>";
+	res->setBody(body);
+	return res;
 }
 
-Response *LoginHandler::callback(Request *req) {
-  string username = req->getBodyParam("username");
-  string password = req->getBodyParam("password");
-  if (username == "root")
-    throw Server::Exception("Remote root access has been disabled.");
-  cout << "username: " << username << ",\tpassword: " << password << endl;
-  Response *res = Response::redirect("/rand");
-  res->setSessionId("SID");
-  return res;
+Response *LoginHandler::callback(Request *req)
+{
+	string username = req->getBodyParam("username");
+	string password = req->getBodyParam("password");
+	if (username == "root")
+		throw Server::Exception("Remote root access has been disabled.");
+	cout << "username: " << username << ",\tpassword: " << password << endl;
+	Response *res = Response::redirect("/rand");
+	res->setSessionId("SID");
+	return res;
 }
 
 Response *LogOutHandler::callback(Request *req)
@@ -388,39 +379,44 @@ Response *LogOutHandler::callback(Request *req)
 	string line = "POST logout";
 	executeQuery(line, shop);
 
-	Response* res = Response::redirect("/nobodyLoggedIn");
+	Response *res = Response::redirect("/nobodyLoggedIn");
 	return res;
 }
 
-Response *SignUpHandler::callback(Request *req) {
-  string email = req->getBodyParam("email");
-  string username = req->getBodyParam("username");
-  string password = req->getBodyParam("password");
-  string type = req->getBodyParam("type");
-  cout << username << " " << password << " " << type << endl;
-  vector <string> query;
-  string line = "POST signup ? email " + email + " username " + username + " password " + password + " type " + type;
-  cout << "Generated query is " << line << endl;  
-  executeQuery(line, shop);
-  Response* res;
+Response *SignUpHandler::callback(Request *req)
+{
+	string email = req->getBodyParam("email");
+	string username = req->getBodyParam("username");
+	string password = req->getBodyParam("password");
+	string rpassword = req->getBodyParam("rpassword");
 
-	User* currentUser = shop->getCurrentUser();
+	if (password != rpassword)
+		throw Server::Exception("Passwords do not match");
+
+	string type = req->getBodyParam("type");
+	cout << username << " " << password << " " << type << endl;
+	vector<string> query;
+	string line = "POST signup ? email " + email + " username " + username + " password " + password + " type " + type;
+	cout << "Generated query is " << line << endl;
+	executeQuery(line, shop);
+	Response *res;
+
+	User *currentUser = shop->getCurrentUser();
 
 	if (currentUser->getType() == "buyer")
 		res = Response::redirect("/buyerHome");
 	if (currentUser->getType() == "seller")
 		res = Response::redirect("/sellerHome");
-	
+
 	return res;
 }
 
-
-Response *UploadHandler::callback(Request *req) {
-  string name = req->getBodyParam("file_name");
-  string file = req->getBodyParam("file");
-  cout << name << " (" << file.size() << "B):\n" << file << endl;
-  Response *res = Response::redirect("/");
-  return res;
+Response *UploadHandler::callback(Request *req)
+{
+	string name = req->getBodyParam("file_name");
+	string file = req->getBodyParam("file");
+	cout << name << " (" << file.size() << "B):\n"
+		 << file << endl;
+	Response *res = Response::redirect("/");
+	return res;
 }
-
-
