@@ -19,16 +19,11 @@ int main(int argc, char **argv)
 		
 		server.get("/nobodyLoggedIn", new ShowPage("static/home.html"));
 
-		if (currentUser != NULL)
-		{
-			string logged_in_type = currentUser->getType();
-			if (logged_in_type == "admin")
-				server.get("/", new ShowPage("static/admin_home.html"));
-			if (logged_in_type == "buyer")
-				server.get("/buyerHome", new ShowPage("static/buyer_home.html"));
-			if (logged_in_type == "seller")
-				server.get("sellerHome", new ShowPage("static/seller_home.html"));
-		}
+		server.get("/", new ShowPage("static/admin_home.html"));
+		server.get("/adminHome", new ShowPage("static/admin_home.html"));
+		server.get("/buyerHome", new ShowPage("static/buyer_home.html"));
+		server.get("/sellerHome", new ShowPage("static/seller_home.html"));
+		
 		server.get("/home.png", new ShowImage("static/home.png"));
 
 		server.get("/signup", new ShowPage("static/signup.html"));

@@ -405,8 +405,7 @@ Response *SignUpHandler::callback(Request *req) {
   Response* res;
 
 	User* currentUser = shop->getCurrentUser();
-	if (currentUser == NULL)
-		res = Response::redirect("/adminHome");
+
 	if (currentUser->getType() == "buyer")
 		res = Response::redirect("/buyerHome");
 	if (currentUser->getType() == "seller")
