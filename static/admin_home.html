@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
   <body style="text-align: center;">
+
+
     <h1>JomeBazaar</h1>
+    <form align="right" name="log_out_form" method="post" action="log_out">
+        <label class="logoutLblPos">
+        <input name="log_out" type="submit" id="log_out_submit" value="log out">
+        </label>
+    </form>
     <h2>Admin Home Page</h2>
     <div>
       <form action="/adminup" method="post" enctype="multipart/form-data">
@@ -15,5 +22,6 @@
         <button type="submit" >Upload</button>
       </form>
     </div>
+
   </body>
 </html>

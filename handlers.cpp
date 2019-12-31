@@ -390,7 +390,6 @@ Response *SignUpHandler::callback(Request *req) {
   string username = req->getBodyParam("username");
   string password = req->getBodyParam("password");
   string type = req->getBodyParam("type");
-  cout << "###########################" << endl;
   cout << username << " " << password << " " << type << endl;
   vector <string> query;
   string line = "POST signup ? email " + email + " username " + username + " password " + password + " type " + type;
