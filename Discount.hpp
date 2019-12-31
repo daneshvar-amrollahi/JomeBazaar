@@ -13,15 +13,11 @@ private:
 	string code;
 	double percent;
 	Offer* offer;
-	int number;
 public:
-	Discount(double _percent, Offer* _offer, int _number);
+	Discount(double _percent, Offer* _offer);
 
 	string getCode() {return code;}
 	double getPercent() {return percent;}
 	Offer* getOffer() {return offer;}
-	int getNumber() {return number;}
-
-	void decreaseNumber() {number--;}
 };
 #endif

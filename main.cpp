@@ -24,6 +24,8 @@ int main(int argc, char **argv)
 		
 		server.get("/home.png", new ShowImage("static/home.png"));
 
+		server.post("/logout", new LogOutHandler(&shop));
+
 		server.get("/signup", new ShowPage("static/signup.html"));
 		server.post("/signup", new SignUpHandler(&shop));
 
