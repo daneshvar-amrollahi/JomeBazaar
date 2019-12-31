@@ -30,4 +30,13 @@ class SignUpHandler : public RequestHandler {
     Response *callback(Request *);
 };
 
+class LogOutHandler : public RequestHandler {
+  private:
+    Shop* shop;
+  public:
+    LogOutHandler(Shop* _shop) {shop = _shop;}
+    Response *callback(Request *);
+};
+
+
 #endif

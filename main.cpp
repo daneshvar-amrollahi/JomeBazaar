@@ -15,21 +15,27 @@ int main(int argc, char **argv)
 
     	MyServer server(argc > 1 ? atoi(argv[1]) : 5000);
 
-		if (shop.getCurrentUser() == NULL)
-			server.get("/", new ShowPage("static/home.html"));
-
-		string logged_in_type = (shop.getCurrentUser())->getType();
-		if (logged_in_type == "admin")
-			server.get("/", new ShowPage("static/admin_home.html"));
+		User* currentUser = shop.getCurrentUser();
 		
-		server.get("/home.png", new ShowImage("static/home.png"));
+		server.get("/nobodyLoggedIn", new ShowPage("static/home.html"));
 
-		server.post("/logout", new LogOutHandler(&shop));
+		if (currentUser != NULL)
+		{
+			string logged_in_type = currentUser->getType();
+			if (logged_in_type == "admin")
+				server.get("/", new ShowPage("static/admin_home.html"));
+			if (logged_in_type == "buyer")
+				server.get("/buyerHome", new ShowPage("static/buyer_home.html"));
+			if (logged_in_type == "seller")
+				server.get("sellerHome", new ShowPage("static/seller_home.html"));
+		}
+		server.get("/home.png", new ShowImage("static/home.png"));
 
 		server.get("/signup", new ShowPage("static/signup.html"));
 		server.post("/signup", new SignUpHandler(&shop));
 
-		
+		server.post("/logout", new LogOutHandler(&shop));
+
     	server.run();
 
   	} catch (Server::Exception ex) {

@@ -383,7 +383,14 @@ Response *LoginHandler::callback(Request *req) {
   return res;
 }
 
+Response *LogOutHandler::callback(Request *req)
+{
+	string line = "POST logout";
+	executeQuery(line, shop);
 
+	Response* res = Response::redirect("/nobodyLoggedIn");
+	return res;
+}
 
 Response *SignUpHandler::callback(Request *req) {
   string email = req->getBodyParam("email");
@@ -395,7 +402,19 @@ Response *SignUpHandler::callback(Request *req) {
   string line = "POST signup ? email " + email + " username " + username + " password " + password + " type " + type;
   cout << "Generated query is " << line << endl;  
   executeQuery(line, shop);
+  Response* res;
+
+	User* currentUser = shop->getCurrentUser();
+	if (currentUser == NULL)
+		res = Response::redirect("/adminHome");
+	if (currentUser->getType() == "buyer")
+		res = Response::redirect("/buyerHome");
+	if (currentUser->getType() == "seller")
+		res = Response::redirect("/sellerHome");
+	
+	return res;
 }
+
 
 Response *UploadHandler::callback(Request *req) {
   string name = req->getBodyParam("file_name");
