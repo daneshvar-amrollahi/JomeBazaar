@@ -459,7 +459,7 @@ Response *BuyerHomeHandler::callback(Request *req)
 	vector < pair<int, string> > products = shop->getProducts(q);
 
 	for (int i = 0 ; i < products.size() ; i++)
-		body += "<p>" + prodpucts[i].first << " | " << products[i].second + "</p> <br />";
+		body += "<p>" + to_string(products[i].first) + " | " + products[i].second + "</p> <br />";
 	
 
 	body += "<form align=\"center\" name=\"log_out_form\" method=\"post\" action=\"/logout\">";
