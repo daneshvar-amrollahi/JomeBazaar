@@ -457,11 +457,18 @@ Response *BuyerHomeHandler::callback(Request *req)
 	q.push_back("GET");
 	q.push_back("getProducts");
 	vector < pair<int, string> > products = shop->getProducts(q);
-
+	body += "<br/>";
 	for (int i = 0 ; i < products.size() ; i++)
-		body += "<p>" + to_string(products[i].first) + " | " + products[i].second + "</p> <br />";
-	
+	{
+		string id = to_string(products[i].first);
 
+		string product_info = id + " | " + products[i].second; 
+
+	
+		body += "<a href = \"/productDetails/" + id + "\">" + product_info + "</a>";
+		body += "<br/>";
+	}
+	body += "<br/>";
 	body += "<form align=\"center\" name=\"log_out_form\" method=\"post\" action=\"/logout\">";
 	body += "<label class=\"logoutLblPos\">";
 	body += "<input name=\"log_out\" type=\"submit\" id=\"log_out_submit\" value=\"Log Out\">";

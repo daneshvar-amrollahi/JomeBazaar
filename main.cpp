@@ -38,6 +38,8 @@ int main(int argc, char **argv)
 
 		server.post("/logout", new LogOutHandler(&shop));
 
+		
+
 		server.run();
 	}
 	catch (Server::Exception ex)
