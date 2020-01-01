@@ -458,10 +458,8 @@ Response *BuyerHomeHandler::callback(Request *req)
 	q.push_back("getProducts");
 	vector < pair<int, string> > products = shop->getProducts(q);
 
-	cout << "size isssssssssssss" << products.size() << endl;
-
 	for (int i = 0 ; i < products.size() ; i++)
-		body += "<p>" + products[i].second + "</p> <br />";
+		body += "<p>" + prodpucts[i].first << " | " << products[i].second + "</p> <br />";
 	
 
 	body += "<form align=\"center\" name=\"log_out_form\" method=\"post\" action=\"/logout\">";
