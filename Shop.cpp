@@ -271,7 +271,7 @@ string get_name(string loc)
 
 void Shop::importMobile(string path)
 {
-	ifstream fin(get_name(path).c_str());
+	ifstream fin(path.c_str());
 	string line;
 	getline(fin, line);
 
@@ -314,6 +314,7 @@ void Shop::importTv(string path)
 
 void Shop::import(vector <string> query)
 {
+
 	if (currentUser->getUsername() != ADMIN)
 		throw &permission_denied;	
 
@@ -327,7 +328,8 @@ void Shop::import(vector <string> query)
 		throw &bad_request;
 
 	string path = query[PATH_INDEX + 1];
-	
+
+
 	int type = getType(path);
 	if (type == MOBILE)
 		this->importMobile(path);
@@ -352,7 +354,7 @@ bool Shop::isSeller(string username)
 	return 0;
 }
 
-void Shop::getProducts(vector <string> query)
+vector < pair<int, string> > Shop::getProducts(vector <string> query)
 {
 	if (currentUser->getType() != SELLER && currentUser->getType() != BUYER)
 		throw &permission_denied;
@@ -387,7 +389,7 @@ void Shop::getProducts(vector <string> query)
 		string name = products[i].second;
 		cout << id << " | "<< name << endl;
 	}
-
+	return products;
 }
 
 

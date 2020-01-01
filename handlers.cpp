@@ -420,14 +420,16 @@ Response *UploadHandler::callback(Request *req)
 	/*cout << name << " (" << file.size() << "B):\n"
 		 << file << endl;*/
 
-
 	ofstream fout(name.c_str());
 	fout << file;
+	fout.close();
 
 	string line = "POST importProducts ? type " + type + " filePath " + name;
 	cout << "Generated query is: " << line << endl;
 	executeQuery(line, shop);
 	
+	
+
 	Response *res = Response::redirect("/adminHome");
 	return res;
 }
@@ -449,6 +451,17 @@ Response *BuyerHomeHandler::callback(Request *req)
 	body += "<br />";
 
 	//neshoon bede kala haro
+	//creating query:
+	
+	vector <string> q;
+	q.push_back("GET");
+	q.push_back("getProducts");
+	vector < pair<int, string> > products = shop->getProducts(q);
+
+	cout << "size isssssssssssss" << products.size() << endl;
+
+	for (int i = 0 ; i < products.size() ; i++)
+		body += "<p>" + products[i].second + "</p> <br />";
 	
 
 	body += "<form align=\"center\" name=\"log_out_form\" method=\"post\" action=\"/logout\">";

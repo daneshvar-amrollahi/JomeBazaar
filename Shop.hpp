@@ -42,7 +42,7 @@ public:
 	void importTv(string path);
 	Tv* getNewTv(vector <string> splitted);
 
-	void getProducts(vector <string> query);
+	vector < pair<int, string> > getProducts(vector <string> query);
 
 	bool isSeller(string username);
 	bool isBuyer(string username);
