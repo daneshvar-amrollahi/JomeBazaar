@@ -30,6 +30,8 @@ int main(int argc, char **argv)
 		server.get("/signup", new ShowPage("static/signup.html"));
 		server.post("/signup", new SignUpHandler(&shop));
 
+		server.post("/adminUp", new UploadHandler(&shop));
+
 		server.post("/logout", new LogOutHandler(&shop));
 
 		server.run();

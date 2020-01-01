@@ -7,36 +7,45 @@
 #include <iostream>
 #include "Shop.hpp"
 
-class RandomNumberHandler : public RequestHandler {
+class RandomNumberHandler : public RequestHandler
+{
 public:
   Response *callback(Request *);
 };
 
-class LoginHandler : public RequestHandler {
+class LoginHandler : public RequestHandler
+{
 public:
   Response *callback(Request *);
 };
 
-class UploadHandler : public RequestHandler {
+class UploadHandler : public RequestHandler
+{
+private:
+  Shop *shop;
 public:
+  UploadHandler(Shop *_shop) { shop = _shop; }
   Response *callback(Request *);
 };
 
-class SignUpHandler : public RequestHandler {
-  private:
-    Shop* shop;
-  public:
-    SignUpHandler(Shop* _shop) {shop = _shop;}
-    Response *callback(Request *);
+class SignUpHandler : public RequestHandler
+{
+private:
+  Shop *shop;
+
+public:
+  SignUpHandler(Shop *_shop) { shop = _shop; }
+  Response *callback(Request *);
 };
 
-class LogOutHandler : public RequestHandler {
-  private:
-    Shop* shop;
-  public:
-    LogOutHandler(Shop* _shop) {shop = _shop;}
-    Response *callback(Request *);
-};
+class LogOutHandler : public RequestHandler
+{
+private:
+  Shop *shop;
 
+public:
+  LogOutHandler(Shop *_shop) { shop = _shop; }
+  Response *callback(Request *);
+};
 
 #endif

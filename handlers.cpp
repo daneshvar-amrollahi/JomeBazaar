@@ -2,6 +2,7 @@
 #include <vector>
 #include "Shop.hpp"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -415,8 +416,18 @@ Response *UploadHandler::callback(Request *req)
 {
 	string name = req->getBodyParam("file_name");
 	string file = req->getBodyParam("file");
-	cout << name << " (" << file.size() << "B):\n"
-		 << file << endl;
-	Response *res = Response::redirect("/");
+	string type = req->getBodyParam("Product Type");
+	/*cout << name << " (" << file.size() << "B):\n"
+		 << file << endl;*/
+
+
+	ofstream fout(name.c_str());
+	fout << file;
+
+	string line = "POST importProducts ? type " + type + " filePath " + name;
+	cout << "Generated query is: " << line << endl;
+	executeQuery(line, shop);
+	
+	Response *res = Response::redirect("/adminHome");
 	return res;
 }
