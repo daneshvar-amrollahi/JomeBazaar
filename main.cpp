@@ -22,8 +22,12 @@ int main(int argc, char **argv)
 
 		server.get("/", new ShowPage("static/admin_home.html"));
 		server.get("/adminHome", new ShowPage("static/admin_home.html"));
-		server.get("/buyerHome", new ShowPage("static/buyer_home.html"));
+
+		server.get("/buyerHome", new BuyerHomeHandler(&shop));
+
 		server.get("/sellerHome", new ShowPage("static/seller_home.html"));
+
+		server.get("/buyerHome", new BuyerHomeHandler(&shop));
 
 		server.get("/home.png", new ShowImage("static/home.png"));
 

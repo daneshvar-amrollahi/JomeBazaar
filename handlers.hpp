@@ -48,4 +48,13 @@ public:
   Response *callback(Request *);
 };
 
+class BuyerHomeHandler: public RequestHandler
+{
+  private:
+    Shop* shop;
+  public:
+    BuyerHomeHandler(Shop *_shop) { shop = _shop; }
+    Response *callback(Request *);
+};
+
 #endif

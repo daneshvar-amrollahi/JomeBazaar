@@ -431,3 +431,33 @@ Response *UploadHandler::callback(Request *req)
 	Response *res = Response::redirect("/adminHome");
 	return res;
 }
+
+Response *BuyerHomeHandler::callback(Request *req)
+{
+	Response *res = new Response;
+	res->setHeader("Content-Type", "text/html");
+	string body;
+	body += "<!DOCTYPE html>";
+	body += "<html>";
+	body += "<body style=\"text-align: center;\">";
+	body += "<h1>Buyer Homepage</h1>";
+	body += "<img src=\"/home.png\" style=\"width:5%;\">";
+	body += "<br />";
+	body += "<a href=\"/cart\">Go to cart</a>";
+	body += "<br />";
+	body += "<a href=\"/wallet\">Go to wallet page</a>";
+	body += "<br />";
+
+	
+
+	body += "<form align=\"center\" name=\"log_out_form\" method=\"post\" action=\"/logout\">";
+	body += "<label class=\"logoutLblPos\">";
+	body += "<input name=\"log_out\" type=\"submit\" id=\"log_out_submit\" value=\"Log Out\">";
+	body += "</label>";
+	body += "</form>";
+	body += "</body>";
+	body += "</html>";
+
+	res->setBody(body);
+	return res;
+}
