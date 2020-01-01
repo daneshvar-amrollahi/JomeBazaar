@@ -465,7 +465,7 @@ Response *BuyerHomeHandler::callback(Request *req)
 		string product_info = id + " | " + products[i].second; 
 
 	
-		body += "<a href = \"/productDetails/" + id + "\">" + product_info + "</a>";
+		body += "<a href = \"/productDetails?id=" + id + "\">" + product_info + "</a>";
 		body += "<br/>";
 	}
 	body += "<br/>";
@@ -528,6 +528,46 @@ Response *SellerHomeHandler::callback(Request *req)
 	body += "<input name=\"log_out\" type=\"submit\" id=\"log_out_submit\" value=\"Log Out\">";
 	body += "</label>";
 	body += "</form>";
+	body += "</body>";
+	body += "</html>";
+	res->setBody(body);
+	return res;
+}
+/*
+Response *WalletHandler::callback(Request *req))
+{
+	Response *res = new Response;
+	res->setHeader("Content-Type", "text/html");
+	string body;
+	body += "<!DOCTYPE html>";
+	body += "<html>";
+	body += "<body style=\"text-align: center;\">";
+	body += "<h1>Wallet</h1>"
+
+	User* currentUser = shop->getCurrentUser();
+	vector <double> currentUser wal = currentUser->getWallet();
+	body += "<p>" + "Current balance is" + to_string(wal.back()) + "</p>";
+	body += "</body>";
+	body += "</html>";
+	res->setBody(body);
+	return res;
+}
+*/
+
+Response *ShowDetailHandler::callback(Request *req)
+{
+	Response *res = new Response;
+	res->setHeader("Content-Type", "text/html");
+	string body;
+	body += "<!DOCTYPE html>";
+	body += "<html>";
+	body += "<body style=\"text-align: center;\">";
+	int id = stoi(req->getBodyParam("id"));
+	string line = "GET productDetail ? productId " + to_string(id);
+	vector <string> query = splitBySpace(line);
+	vector <string> ans = shop->getProductDetail(query);
+	for (int i = 0 ; i < ans.size() ; i++)
+		body += "<p>" + ans[i] + "</p>";
 	body += "</body>";
 	body += "</html>";
 	res->setBody(body);

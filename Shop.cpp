@@ -763,36 +763,42 @@ Tv* Shop::getTvById(int id)
 			return tvs[i];
 }
 
-void printTv(Tv* tv)
+vector <string> printTv(Tv* tv)
 {
-	cout << tv->getName() << endl;
-	cout << "Screen Size: " << tv->getScreenSize() << endl;
-	cout << "Screen Type: " << tv->getScreenType() << endl;
-	cout << "Resolution: " << tv->getResolution() << endl;
-	cout << "3D: " << tv->getThreeD() << endl;
-	cout << "HDR: " << tv->getHdr() << endl;
+	vector <string> res;
+	cout << tv->getName() << endl; res.push_back(tv->getName());
+	cout << "Screen Size: " << tv->getScreenSize() << endl; res.push_back("Screen Size: " + tv->getScreenSize());
+	cout << "Screen Type: " << tv->getScreenType() << endl; res.push_back("Screen Type: " + tv->getScreenType());
+	cout << "Resolution: " << tv->getResolution() << endl; res.push_back("Resolution: " + tv->getResolution());
+	cout << "3D: " << tv->getThreeD() << endl; res.push_back("3D: " + tv->getThreeD());
+	cout << "HDR: " << tv->getHdr() << endl; res.push_back("HDR: " + tv->getHdr());
+	return res;
 }
 
-void printMobile(Mobile* mobile)
+vector <string> printMobile(Mobile* mobile)
 {
-	cout << mobile->getName() << endl;
-	cout << "Weight: " << mobile->getWeight() << endl;
-	cout << "CPUFrequency: " << mobile->getCpuFrequency() << endl;
-	cout << "Built-in Memory: " << mobile->getBuiltInMemory() << endl;
-	cout << "RAM: " << mobile->getRam() << endl;
-	cout << "Display Size: " << mobile->getDisplaySize() << endl;
-	cout << "Camera Resolution: " << mobile->getCameraResolution() << endl;
-	cout << "Operating System: " << mobile->getOperatingSystem() << endl; 
+	vector <string> res;
+	cout << mobile->getName() << endl; res.push_back(mobile->getName());
+	cout << "Weight: " << mobile->getWeight() << endl; res.push_back("Weight: " + mobile->getWeight());
+	cout << "CPUFrequency: " << mobile->getCpuFrequency() << endl; res.push_back("CPUFrequency: " + to_string(mobile->getCpuFrequency()));
+	cout << "Built-in Memory: " << mobile->getBuiltInMemory() << endl; res.push_back("Built-in Memory: " + mobile->getBuiltInMemory());
+	cout << "RAM: " << mobile->getRam() << endl; res.push_back("RAM: " + mobile->getRam());
+	cout << "Display Size: " << mobile->getDisplaySize() << endl; res.push_back("Display Size: " + to_string(mobile->getDisplaySize()));
+	cout << "Camera Resolution: " << mobile->getCameraResolution() << endl; res.push_back("Camera Resolution: " + mobile->getCameraResolution());
+	cout << "Operating System: " << mobile->getOperatingSystem() << endl; res.push_back("Operating System: " + mobile->getOperatingSystem());
+	return res;
 }
 
-void printCar(Car* car)
+vector <string> printCar(Car* car)
 {
-	cout << car->getName() << endl;
-	cout << "Weight: " << car->getWeight() << endl;
-	cout << "Num. of Seats: " << car->getNumOfSeats() << endl;
-	cout << "Num. of Cylinders: " << car->getNumOfCylinders() << endl;
-	cout << "Engine Capacity: " << car->getEngineCapacity() << endl;
-	cout << "Reverse Parking Sensors: " << car->getReverseParkingSensors() << endl;
+	vector <string> res;
+	cout << car->getName() << endl; res.push_back(car->getName());
+	cout << "Weight: " << car->getWeight() << endl; res.push_back("Weight: " + car->getWeight());
+	cout << "Num. of Seats: " << car->getNumOfSeats() << endl; res.push_back("Num. of Seats: " + car->getNumOfSeats());
+	cout << "Num. of Cylinders: " << car->getNumOfCylinders() << endl; res.push_back("Num. of Cylinders: " + car->getNumOfCylinders());
+	cout << "Engine Capacity: " << car->getEngineCapacity() << endl; res.push_back("Engine Capacity: " + car->getEngineCapacity());
+	cout << "Reverse Parking Sensors: " << car->getReverseParkingSensors() << endl; res.push_back("Reverse Parking Sensors: " + car->getReverseParkingSensors());
+	return res;
 }
 
 bool Shop::isBuyer(string username)
@@ -803,7 +809,7 @@ bool Shop::isBuyer(string username)
 	return 0;
 }
 
-void Shop::getProductDetail(vector <string> query)
+vector <string> Shop::getProductDetail(vector <string> query)
 {
 	if (query.size() < 5)
 		throw &bad_request;
@@ -820,20 +826,17 @@ void Shop::getProductDetail(vector <string> query)
 	if (isTv(id))
 	{
 		Tv* tv = getTvById(id);
-		printTv(tv);
-		return;
+		return printTv(tv);
 	}
 	if (isMobile(id))
 	{
 		Mobile* mobile = getMobileById(id);
-		printMobile(mobile);
-		return;	
+		return printMobile(mobile);	
 	}
 	if (isCar(id))
 	{
 		Car* car = getCarById(id);
-		printCar(car);
-		return;
+		return printCar(car);
 	}
 
 	throw &not_found;

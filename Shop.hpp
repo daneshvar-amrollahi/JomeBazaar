@@ -75,7 +75,7 @@ public:
 	Mobile* getMobileById(int id);
 	Car* getCarById(int id);
 	Tv* getTvById(int id);
-	void getProductDetail(vector <string> query);
+	vector <string> getProductDetail(vector <string> query);
 
 	void addCommentForId(int id, string s, string username);
 	void postComment(vector <string> query);
