@@ -480,3 +480,56 @@ Response *BuyerHomeHandler::callback(Request *req)
 	res->setBody(body);
 	return res;
 }
+
+
+Response *AddOfferHandler::callback(Request *req)
+{
+	string productId = req->getBodyParam("productId");
+	string offerUnitPrice = req->getBodyParam("offerUnitPrice");
+	string offerAmount = req->getBodyParam("offerAmount");
+
+	string line = "POST offer ? productId " + productId + " offerUnitPrice " + offerUnitPrice + " offerAmount " + offerAmount;
+	cout << "Generated query is " << line << endl;
+	executeQuery(line, shop);
+	Response *res;
+	
+	res = Response::redirect("/sellerHome");
+	return res;
+}
+
+Response *SellerHomeHandler::callback(Request *req)
+{
+	Response *res = new Response;
+	res->setHeader("Content-Type", "text/html");
+	string body;
+	body += "<!DOCTYPE html>";
+	body += "<html>";
+	body += "<body style=\"text-align: center;\">";
+	body += "<h1>Seller Homepage</h1>";
+	body += "<img src=\"/home.png\" style=\"width:5%;\">";
+	body += "<br />";
+	body += "<a href=\"/addOffer\">Add Offer</a>";
+	body += "<br />";
+
+	//GET my offers
+	vector <string> query;
+	query.push_back("GET");
+	query.push_back("myOffers");
+	vector <string> offers = shop->getMyOffers(query);
+	for (int i = 0 ; i < offers.size() ; i++)
+	{
+		body += "<p>" + offers[i] + "</p>";
+		body += "<br/>";
+	}
+
+
+	body += "<form align=\"center\" name=\"log_out_form\" method=\"post\" action=\"/logout\">";
+	body += "<label class=\"logoutLblPos\">";
+	body += "<input name=\"log_out\" type=\"submit\" id=\"log_out_submit\" value=\"Log Out\">";
+	body += "</label>";
+	body += "</form>";
+	body += "</body>";
+	body += "</html>";
+	res->setBody(body);
+	return res;
+}

@@ -57,4 +57,22 @@ class BuyerHomeHandler: public RequestHandler
     Response *callback(Request *);
 };
 
+class AddOfferHandler: public RequestHandler
+{
+  private:
+    Shop* shop;
+  public:
+    AddOfferHandler(Shop *_shop) { shop = _shop; }
+    Response *callback(Request *);
+};
+
+class SellerHomeHandler: public RequestHandler
+{
+  private:
+    Shop* shop;
+  public:
+    SellerHomeHandler(Shop *_shop) {shop = _shop; }
+    Response *callback(Request *);
+
+};
 #endif

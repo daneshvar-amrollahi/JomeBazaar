@@ -460,7 +460,7 @@ bool Shop::existsProductId(int product_id)
 	return 0;
 }
 
-void Shop::getMyOffers(vector <string> query)
+vector <string> Shop::getMyOffers(vector <string> query)
 {
 	if (!isSeller(currentUser->getUsername()))
 		throw &permission_denied;
@@ -471,12 +471,18 @@ void Shop::getMyOffers(vector <string> query)
 	Seller* current_seller = this->findSeller(currentUser->getUsername());
 	vector <Offer*> offers = current_seller->getOffers();
 
+	vector <string> res;
+	res.push_back("productId | offerId | offerUnitPrice | offerAmount");
 	cout << "productId | offerId | offerUnitPrice | offerAmount" << endl;
 	for (int i = 0 ; i < offers.size() ; i++)
 	{
 		Offer* current_offer = offers[i];
 		cout << current_offer->getProductId() << " | "<< current_offer->getId() << " | " << current_offer->getUnitPrice() << " | " << current_offer->getAmount() << endl;
+		res.push_back(to_string(current_offer->getProductId()) + " | " + to_string(current_offer->getId()) +
+		 " | " + to_string(current_offer->getUnitPrice()) + " | " + to_string(current_offer->getAmount()));
 	}
+
+	return res;
 }
 
 void Shop::changeOffer(vector <string> query)

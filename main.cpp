@@ -23,9 +23,9 @@ int main(int argc, char **argv)
 		server.get("/", new ShowPage("static/admin_home.html"));
 		server.get("/adminHome", new ShowPage("static/admin_home.html"));
 
-		server.get("/buyerHome", new BuyerHomeHandler(&shop));
 
-		server.get("/sellerHome", new ShowPage("static/seller_home.html"));
+		//server.get("/sellerHome", new ShowPage("static/seller_home.html")); //bayad comment she, bejash seller_home_handler bezari
+		server.get("/sellerHome", new SellerHomeHandler(&shop));
 
 		server.get("/buyerHome", new BuyerHomeHandler(&shop));
 
@@ -38,7 +38,8 @@ int main(int argc, char **argv)
 
 		server.post("/logout", new LogOutHandler(&shop));
 
-		
+		server.get("/addOffer", new ShowPage("static/add_offer.html"));
+		server.post("/addOffer", new AddOfferHandler(&shop));
 
 		server.run();
 	}
