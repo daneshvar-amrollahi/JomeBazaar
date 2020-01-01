@@ -448,6 +448,7 @@ Response *BuyerHomeHandler::callback(Request *req)
 	body += "<a href=\"/wallet\">Go to wallet page</a>";
 	body += "<br />";
 
+	//neshoon bede kala haro
 	
 
 	body += "<form align=\"center\" name=\"log_out_form\" method=\"post\" action=\"/logout\">";
