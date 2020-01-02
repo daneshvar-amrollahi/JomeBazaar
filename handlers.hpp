@@ -13,12 +13,6 @@ public:
   Response *callback(Request *);
 };
 
-class LoginHandler : public RequestHandler
-{
-public:
-  Response *callback(Request *);
-};
-
 class UploadHandler : public RequestHandler
 {
 private:
@@ -101,6 +95,15 @@ class ChargeWalletHandler: public RequestHandler
     Shop* shop;
   public:
     ChargeWalletHandler(Shop* _shop) {shop = _shop; }
+    Response *callback(Request *);
+};
+
+class LoginHandler: public RequestHandler
+{
+  private:
+    Shop* shop;
+  public:
+    LoginHandler(Shop* _shop) {shop = _shop; }
     Response *callback(Request *);
 };
 #endif

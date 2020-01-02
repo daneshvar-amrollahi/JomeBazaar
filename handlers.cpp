@@ -365,13 +365,24 @@ Response *RandomNumberHandler::callback(Request *req)
 
 Response *LoginHandler::callback(Request *req)
 {
-	string username = req->getBodyParam("username");
+	Response *res = new Response;
+	string email = req->getBodyParam("email");
 	string password = req->getBodyParam("password");
-	if (username == "root")
-		throw Server::Exception("Remote root access has been disabled.");
-	cout << "username: " << username << ",\tpassword: " << password << endl;
-	Response *res = Response::redirect("/rand");
+	
+	string line = "POST login ? email " + email + " password " + password;
+	executeQuery(line, shop);
 	res->setSessionId("SID");
+	
+	User *currentUser = shop->getCurrentUser();
+	if (currentUser == NULL)
+		res = Response::redirect("/nobodyLoggedIn");
+	if (currentUser->getType() == "buyer")
+		res = Response::redirect("/buyerHome");
+	if (currentUser->getType() == "seller")
+		res = Response::redirect("/sellerHome");
+	if (currentUser->getUsername() == "admin")
+		res = Response::redirect("/adminHome");
+
 	return res;
 }
 
@@ -605,3 +616,4 @@ Response *ChargeWalletHandler::callback(Request *req)
 	res = Response::redirect("/buyerHome");
 	return res;
 }
+

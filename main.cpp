@@ -46,6 +46,9 @@ int main(int argc, char **argv)
 		server.get("/productDetails", new ShowDetailHandler(&shop));
 
 		server.post("/chargeWallet", new ChargeWalletHandler(&shop));
+
+		server.get("/login", new ShowPage("static/logincss.html"));
+		server.post("/login", new LoginHandler(&shop)); 
 		server.run();
 	}
 	catch (Server::Exception ex)
