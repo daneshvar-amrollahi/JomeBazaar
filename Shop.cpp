@@ -206,7 +206,7 @@ int getType(string path)
 		return 0;
 	if (c == 'r')
 		return 1;
-	if (c == 'V')
+	if (c == 'V' || c == 'v')
 		return 2;
 }
 
@@ -300,6 +300,7 @@ void Shop::importCar(string path)
 
 void Shop::importTv(string path)
 {
+	cout << "importing tvzzzzzzzz" << endl;
 	ifstream fin(get_name(path).c_str());
 	string line;
 	getline(fin, line);
