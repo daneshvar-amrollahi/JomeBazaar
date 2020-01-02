@@ -770,7 +770,7 @@ vector <string> printTv(Tv* tv)
 	res.push_back(tv->getName());
 
 	cout << "Screen Size: " << tv->getScreenSize() << endl; 
-	res.push_back("Screen Size: " + tv->getScreenSize());
+	res.push_back("Screen Size: " + to_string(tv->getScreenSize()));
 
 	cout << "Screen Type: " << tv->getScreenType() << endl; 
 	res.push_back("Screen Type: " + tv->getScreenType());
@@ -779,10 +779,10 @@ vector <string> printTv(Tv* tv)
 	res.push_back("Resolution: " + tv->getResolution());
 
 	cout << "3D: " << tv->getThreeD() << endl; 
-	res.push_back("3D: " + tv->getThreeD());
+	res.push_back("3D: " + to_string(tv->getThreeD()));
 
 	cout << "HDR: " << tv->getHdr() << endl; 
-	res.push_back("HDR: " + tv->getHdr());
+	res.push_back("HDR: " + to_string(tv->getHdr()));
 	return res;
 }
 
@@ -822,19 +822,19 @@ vector <string> printCar(Car* car)
 	res.push_back(car->getName());
 
 	cout << "Weight: " << car->getWeight() << endl; 
-	res.push_back("Weight: " + car->getWeight());
+	res.push_back("Weight: " + to_string(car->getWeight()));
 
 	cout << "Num. of Seats: " << car->getNumOfSeats() << endl; 
-	res.push_back("Num. of Seats: " + car->getNumOfSeats());
+	res.push_back("Num. of Seats: " + to_string(car->getNumOfSeats()));
 
 	cout << "Num. of Cylinders: " << car->getNumOfCylinders() << endl; 
-	res.push_back("Num. of Cylinders: " + car->getNumOfCylinders());
+	res.push_back("Num. of Cylinders: " + to_string(car->getNumOfCylinders()));
 
 	cout << "Engine Capacity: " << car->getEngineCapacity() << endl; 
-	res.push_back("Engine Capacity: " + car->getEngineCapacity());
+	res.push_back("Engine Capacity: " + to_string(car->getEngineCapacity()));
 
 	cout << "Reverse Parking Sensors: " << car->getReverseParkingSensors() << endl; 
-	res.push_back("Reverse Parking Sensors: " + car->getReverseParkingSensors());
+	res.push_back("Reverse Parking Sensors: " + to_string(car->getReverseParkingSensors()));
 	return res;
 }
 
