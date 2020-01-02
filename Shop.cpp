@@ -766,38 +766,75 @@ Tv* Shop::getTvById(int id)
 vector <string> printTv(Tv* tv)
 {
 	vector <string> res;
-	cout << tv->getName() << endl; res.push_back(tv->getName());
-	cout << "Screen Size: " << tv->getScreenSize() << endl; res.push_back("Screen Size: " + tv->getScreenSize());
-	cout << "Screen Type: " << tv->getScreenType() << endl; res.push_back("Screen Type: " + tv->getScreenType());
-	cout << "Resolution: " << tv->getResolution() << endl; res.push_back("Resolution: " + tv->getResolution());
-	cout << "3D: " << tv->getThreeD() << endl; res.push_back("3D: " + tv->getThreeD());
-	cout << "HDR: " << tv->getHdr() << endl; res.push_back("HDR: " + tv->getHdr());
+	cout << tv->getName() << endl; 
+	res.push_back(tv->getName());
+
+	cout << "Screen Size: " << tv->getScreenSize() << endl; 
+	res.push_back("Screen Size: " + tv->getScreenSize());
+
+	cout << "Screen Type: " << tv->getScreenType() << endl; 
+	res.push_back("Screen Type: " + tv->getScreenType());
+
+	cout << "Resolution: " << tv->getResolution() << endl; 
+	res.push_back("Resolution: " + tv->getResolution());
+
+	cout << "3D: " << tv->getThreeD() << endl; 
+	res.push_back("3D: " + tv->getThreeD());
+
+	cout << "HDR: " << tv->getHdr() << endl; 
+	res.push_back("HDR: " + tv->getHdr());
 	return res;
 }
 
 vector <string> printMobile(Mobile* mobile)
 {
 	vector <string> res;
-	cout << mobile->getName() << endl; res.push_back(mobile->getName());
-	cout << "Weight: " << mobile->getWeight() << endl; res.push_back("Weight: " + mobile->getWeight());
-	cout << "CPUFrequency: " << mobile->getCpuFrequency() << endl; res.push_back("CPUFrequency: " + to_string(mobile->getCpuFrequency()));
-	cout << "Built-in Memory: " << mobile->getBuiltInMemory() << endl; res.push_back("Built-in Memory: " + mobile->getBuiltInMemory());
-	cout << "RAM: " << mobile->getRam() << endl; res.push_back("RAM: " + mobile->getRam());
-	cout << "Display Size: " << mobile->getDisplaySize() << endl; res.push_back("Display Size: " + to_string(mobile->getDisplaySize()));
-	cout << "Camera Resolution: " << mobile->getCameraResolution() << endl; res.push_back("Camera Resolution: " + mobile->getCameraResolution());
-	cout << "Operating System: " << mobile->getOperatingSystem() << endl; res.push_back("Operating System: " + mobile->getOperatingSystem());
+	cout << mobile->getName() << endl; 
+	res.push_back(mobile->getName());
+
+	cout << "Weight: " << mobile->getWeight() << endl; 
+	res.push_back("Weight: " + to_string(mobile->getWeight()));
+
+	cout << "CPUFrequency: " << mobile->getCpuFrequency() << endl; 
+	res.push_back("CPUFrequency: " + to_string(mobile->getCpuFrequency()));
+
+	cout << "Built-in Memory: " << mobile->getBuiltInMemory() << endl; 
+	res.push_back("Built-in Memory: " + to_string(mobile->getBuiltInMemory()));
+
+	cout << "RAM: " << mobile->getRam() << endl; 
+	res.push_back("RAM: " + to_string(mobile->getRam()));
+
+	cout << "Display Size: " << mobile->getDisplaySize() << endl; 
+	res.push_back("Display Size: " + to_string(mobile->getDisplaySize()));
+
+	cout << "Camera Resolution: " << mobile->getCameraResolution() << endl; 
+	res.push_back("Camera Resolution: " + to_string(mobile->getCameraResolution()));
+
+	cout << "Operating System: " << mobile->getOperatingSystem() << endl; 
+	res.push_back("Operating System: " + mobile->getOperatingSystem());
 	return res;
 }
 
 vector <string> printCar(Car* car)
 {
 	vector <string> res;
-	cout << car->getName() << endl; res.push_back(car->getName());
-	cout << "Weight: " << car->getWeight() << endl; res.push_back("Weight: " + car->getWeight());
-	cout << "Num. of Seats: " << car->getNumOfSeats() << endl; res.push_back("Num. of Seats: " + car->getNumOfSeats());
-	cout << "Num. of Cylinders: " << car->getNumOfCylinders() << endl; res.push_back("Num. of Cylinders: " + car->getNumOfCylinders());
-	cout << "Engine Capacity: " << car->getEngineCapacity() << endl; res.push_back("Engine Capacity: " + car->getEngineCapacity());
-	cout << "Reverse Parking Sensors: " << car->getReverseParkingSensors() << endl; res.push_back("Reverse Parking Sensors: " + car->getReverseParkingSensors());
+	cout << car->getName() << endl;
+	res.push_back(car->getName());
+
+	cout << "Weight: " << car->getWeight() << endl; 
+	res.push_back("Weight: " + car->getWeight());
+
+	cout << "Num. of Seats: " << car->getNumOfSeats() << endl; 
+	res.push_back("Num. of Seats: " + car->getNumOfSeats());
+
+	cout << "Num. of Cylinders: " << car->getNumOfCylinders() << endl; 
+	res.push_back("Num. of Cylinders: " + car->getNumOfCylinders());
+
+	cout << "Engine Capacity: " << car->getEngineCapacity() << endl; 
+	res.push_back("Engine Capacity: " + car->getEngineCapacity());
+
+	cout << "Reverse Parking Sensors: " << car->getReverseParkingSensors() << endl; 
+	res.push_back("Reverse Parking Sensors: " + car->getReverseParkingSensors());
 	return res;
 }
 

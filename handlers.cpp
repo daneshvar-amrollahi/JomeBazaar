@@ -562,12 +562,18 @@ Response *ShowDetailHandler::callback(Request *req)
 	body += "<!DOCTYPE html>";
 	body += "<html>";
 	body += "<body style=\"text-align: center;\">";
-	int id = stoi(req->getQueryParam("id"));
-	string line = "GET productDetail ? productId " + to_string(id);
+	string id = req->getQueryParam("id");
+	string line = "GET productDetail ? productId " + id;
+	cout << "Generated query is " << line << endl;
 	vector <string> query = splitBySpace(line);
 	vector <string> ans = shop->getProductDetail(query);
+
+	cout << "Answer is " << endl;
 	for (int i = 0 ; i < ans.size() ; i++)
-		body += "<p>" + ans[i] + "</p>";
+		cout << ans[i] << endl;
+
+	for (int i = 0 ; i < ans.size() ; i++)
+		body += "<p>" + ans[i] + "</p>", body += "<br/>";
 	body += "</body>";
 	body += "</html>";
 	res->setBody(body);
