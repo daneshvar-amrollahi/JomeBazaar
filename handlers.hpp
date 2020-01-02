@@ -75,7 +75,7 @@ class SellerHomeHandler: public RequestHandler
     Response *callback(Request *);
 
 };
-/*
+
 class WalletHandler: public RequestHandler
 {
   private:
@@ -84,7 +84,7 @@ class WalletHandler: public RequestHandler
     WalletHandler(Shop *_shop) {shop = _shop; }
     Response *callback(Request *);
 };
-*/
+
 
 class ShowDetailHandler: public RequestHandler
 {
@@ -92,6 +92,15 @@ class ShowDetailHandler: public RequestHandler
     Shop* shop;
   public:
     ShowDetailHandler(Shop *_shop) {shop = _shop; }
+    Response *callback(Request *);
+};
+
+class ChargeWalletHandler: public RequestHandler
+{
+  private:
+    Shop* shop;
+  public:
+    ChargeWalletHandler(Shop* _shop) {shop = _shop; }
     Response *callback(Request *);
 };
 #endif

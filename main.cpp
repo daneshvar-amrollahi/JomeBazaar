@@ -41,9 +41,11 @@ int main(int argc, char **argv)
 		server.get("/addOffer", new ShowPage("static/add_offer.html"));
 		server.post("/addOffer", new AddOfferHandler(&shop));
 
-		//server.post("/wallet", new WalletHandler(&shop));
+		server.get("/wallet", new WalletHandler(&shop));
 
 		server.get("/productDetails", new ShowDetailHandler(&shop));
+
+		server.post("/chargeWallet", new ChargeWalletHandler(&shop));
 		server.run();
 	}
 	catch (Server::Exception ex)

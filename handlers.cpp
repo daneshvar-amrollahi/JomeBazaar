@@ -450,9 +450,6 @@ Response *BuyerHomeHandler::callback(Request *req)
 	body += "<a href=\"/wallet\">Go to wallet page</a>";
 	body += "<br />";
 
-	//neshoon bede kala haro
-	//creating query:
-	
 	vector <string> q;
 	q.push_back("GET");
 	q.push_back("getProducts");
@@ -533,8 +530,8 @@ Response *SellerHomeHandler::callback(Request *req)
 	res->setBody(body);
 	return res;
 }
-/*
-Response *WalletHandler::callback(Request *req))
+
+Response *WalletHandler::callback(Request *req)
 {
 	Response *res = new Response;
 	res->setHeader("Content-Type", "text/html");
@@ -542,17 +539,32 @@ Response *WalletHandler::callback(Request *req))
 	body += "<!DOCTYPE html>";
 	body += "<html>";
 	body += "<body style=\"text-align: center;\">";
-	body += "<h1>Wallet</h1>"
+	body += "<h1>Wallet</h1>";
 
 	User* currentUser = shop->getCurrentUser();
-	vector <double> currentUser wal = currentUser->getWallet();
-	body += "<p>" + "Current balance is" + to_string(wal.back()) + "</p>";
+	vector <double> wal = currentUser->getWallet();
+	
+	cout << "Wallet is: " << endl;
+	for (int i = 0 ; i < wal.size() ; i++)
+		cout << wal[i] << " ";
+	cout << endl;
+
+	body += "<p> Current balance is " + to_string(wal.back()) + "</p>";
+	
+	//box bezar charge kone
+	body += "<form action=\"/chargeWallet\" method=\"post\">";
+    body += "<input name=\"chargeamount\" type=\"text\" placeholder=\"Enter value for charge\">";
+    body += "<br />";
+	body += "<button type=\"submit\">Add to wallet</button>";
+	body += "</form>";
+
 	body += "</body>";
 	body += "</html>";
 	res->setBody(body);
+
 	return res;
 }
-*/
+
 
 Response *ShowDetailHandler::callback(Request *req)
 {
@@ -573,9 +585,23 @@ Response *ShowDetailHandler::callback(Request *req)
 		cout << ans[i] << endl;
 
 	for (int i = 0 ; i < ans.size() ; i++)
-		body += "<p>" + ans[i] + "</p>", body += "<br/>";
+		body += "<p>" + ans[i] + "</p>";
 	body += "</body>";
 	body += "</html>";
 	res->setBody(body);
+	return res;
+}
+
+Response *ChargeWalletHandler::callback(Request *req)
+{
+	Response *res = new Response;
+	string value = req->getBodyParam("chargeamount");
+	cout << "Value to charge is " << value << endl;
+	string line = "POST chargeWallet ? amount " + value;
+	executeQuery(line, shop);
+
+
+	cout << "executeddd" << endl;
+	res = Response::redirect("/buyerHome");
 	return res;
 }
