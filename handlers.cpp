@@ -431,7 +431,32 @@ Response *BuyerHomeHandler::callback(Request *req)
 	string body;
 	body += "<!DOCTYPE html>";
 	body += "<html>";
-	body += "<body style=\"text-align: center;\" bgcolor = \"#BDBDBD\">";
+
+	body += "<head>";
+	body += "<style>";
+	body += "a:link {";
+    body += "color: #212121";
+    body += "background-color:transparent";
+    body += "text-decoration: none";
+    body += "}";
+	
+	body += "a{font-size: 20px;}";
+
+	body += "a:visited {";
+    body += "color: #212121";
+    body += "background-color:transparent";
+    body += "text-decoration: none";
+    body += "}";
+
+	body += ".centered-wrapper {";
+    body += "position: relative;";
+    body += "text-align: center;";
+	body += "}";
+	body += "</style>";
+
+	body += "</head>";
+
+	body += "<body class = \"centered-wrapper\" bgcolor = \"#BDBDBD\">";
 	body += "<h1>Buyer Homepage</h1>";
 	body += "<img src=\"/home.png\" style=\"width:5%;\">";
 	body += "<br />";
