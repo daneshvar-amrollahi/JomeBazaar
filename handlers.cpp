@@ -658,12 +658,14 @@ Response *ShowDetailHandler::callback(Request *req)
 		{
 			body += "<td>" + current_offer[j] + "</td>";
 		}
+
 		body += "<td> <input name=\"wanted_amount\" type=\"text\" placeholder=\"How many?\" /> </td>";
 		body += "<td> ";
 	
 	  	body += "<form name=\"add_to_cart\" method=\"post\" action=\"/addToCart\">";
     	body += "<label class=\"addtocartLblPos\">";
-      	body += "<input name=\"how_many\" type=\"submit\" id=\"add_to_cart\" value=\"Add To Cart\">";
+
+      	body += "<input name=\"how_many\" type=\"submit\" product_id=" + id +    "\" value=\"Add To Cart\">";
     	body += "</label>";
   		body += "</form>";
 
