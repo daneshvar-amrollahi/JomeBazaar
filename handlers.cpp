@@ -646,7 +646,7 @@ Response *ShowDetailHandler::callback(Request *req)
     body += "<th>offerId</th>";
     body += "<th>offerUnitPrice</th>";
 	body += "<th>offerAmount</th>";
-	body += "<th>Submit</th>";
+	body += "<th>Amount / ProductId</th>";
   	body += "</tr>";
 
 	for (int i = 0 ; i < offers.size() ; i++)
@@ -669,7 +669,8 @@ Response *ShowDetailHandler::callback(Request *req)
 		}
       	body += "</select>";
 		
-		body += "<input name = \" Product Id \" + id = \" " + id + " \" "; 
+		body += "<input name = \" Product Id \"";
+		body += " value = \"" + id + "\" >";
 		body += "<button type=\"submit\">ADD TO CART</button>";
 		body += "</form>";
 
