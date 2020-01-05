@@ -637,11 +637,8 @@ Response *ShowDetailHandler::callback(Request *req)
 
 	body += "</br> </br> </br>";
  
-
 	line = "GET offersOnProduct ? productId " + id;
 	vector < vector<string> > offers = shop->getOffersOnProduct(splitBySpace(line));
-
-
 	body += "<div style=\"overflow-x:auto;\" text-align: center align = \"center\">";
 	body += "<table>";
 
@@ -653,7 +650,22 @@ Response *ShowDetailHandler::callback(Request *req)
 	body += "<th>Button</th>";
   	body += "</tr>";
 
+	for (int i = 0 ; i < offers.size() ; i++)
+	{
+		vector <string> current_offer = offers[i];
+		body += "<tr>";
+		for (int j = 0 ; j < current_offer.size() ; j++)
+		{
+			body += "<td>" + current_offer[j] + "</td>";
+		}
+		body += "<td> <input name=\"wanted_amount\" type=\"text\" placeholder=\"How many?\" /> </td>";
+		body += "<td> ";
+		body += "<button type=\"submit\">Add To Cart</button>";
+		body += "<td>";
 
+		body += "</tr>";
+
+	}
 	  
 	body += "</table>";
 	body += "</div>";
