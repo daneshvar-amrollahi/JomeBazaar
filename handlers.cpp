@@ -576,6 +576,26 @@ Response *WalletHandler::callback(Request *req)
 	return res;
 }
 
+pair<string, string> getRow(string s)
+{
+	string a = "";
+	int i = 0;
+	for (i = 0 ; i < s.size() ; i++)
+	{
+		if (s[i] == ':')
+		{
+			i += 2;
+			break;
+		}
+		a += s[i];
+	}
+	string b = "";
+	for (i ; i < s.size() ; i++)
+		b += s[i];
+	if (b == "")
+		b = a, a = "Name";
+	return make_pair(a, b);
+}
 
 Response *ShowDetailHandler::callback(Request *req)
 {
@@ -591,12 +611,36 @@ Response *ShowDetailHandler::callback(Request *req)
 	vector <string> query = splitBySpace(line);
 	vector <string> ans = shop->getProductDetail(query);
 
+
 	cout << "Answer is " << endl;
 	for (int i = 0 ; i < ans.size() ; i++)
 		cout << ans[i] << endl;
 
+	body += "<div style=\"overflow-x:auto;\">";
+	body += "<table>";
+
+	body += "<tr>";
+    body += "<th>Property</th>";
+    body += "<th>Value</th>";
+  	body += "</tr>";
 	for (int i = 0 ; i < ans.size() ; i++)
-		body += "<p>" + ans[i] + "</p>";
+	{
+		body += "<tr>";
+		pair<string, string> cur = getRow(ans[i]);
+		body += "<td>" + cur.first + "</td>";
+		body += "<td>" + cur.second + "</td>";
+		body += "</tr>";
+	}
+    
+	body += "</table>";
+	body += "</div>";
+	/*
+	for (int i = 0 ; i < ans.size() ; i++)
+	{
+		pair <string, string> cur = getRow(ans[i]);
+		body += "<p>" + cur.first + " $$ " + cur.second + "</p>";
+	}*/
+	
 	body += "</body>";
 	body += "</html>";
 	res->setBody(body);
