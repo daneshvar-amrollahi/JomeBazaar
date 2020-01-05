@@ -528,7 +528,7 @@ Response *SellerHomeHandler::callback(Request *req)
 	string body;
 	body += "<!DOCTYPE html>";
 	body += "<html>";
-	body += "<body style=\"text-align: center;\">";
+	body += "<body style=\"text-align: center;\" bgcolor = #BDBDBD >";
 	body += "<h1>Seller Homepage</h1>";
 	body += "<img src=\"/home.png\" style=\"width:5%;\">";
 	body += "<br />";
@@ -539,13 +539,28 @@ Response *SellerHomeHandler::callback(Request *req)
 	vector <string> query;
 	query.push_back("GET");
 	query.push_back("myOffers");
-	vector <string> offers = shop->getMyOffers(query);
+	vector < vector <string> > offers = shop->getMyOffers(query);
+
+	body += "<div style=\"overflow-x:auto;\" text-align: center align = \"center\">";
+	body += "<table>";
+
+	body += "<tr>";
+    body += "<th>ProductId</th>";
+    body += "<th>OfferId</th>";
+	body += "<th>OfferUnitPrice</th>";
+	body += "<th>OfferAmount</th>";
+  	body += "</tr>";
+
 	for (int i = 0 ; i < offers.size() ; i++)
 	{
-		body += "<p>" + offers[i] + "</p>";
-		body += "<br/>";
+		vector <string> current = offers[i];
+		body += "<tr>";
+		for (int j = 0 ; j < current.size() ; j++)
+			body += "<td>" + current[j] + "</td>";
+		body += "</tr>";
 	}
-
+	body += "</table>";
+	body += "</div>";
 
 	body += "<form align=\"center\" name=\"log_out_form\" method=\"post\" action=\"/logout\">";
 	body += "<label class=\"logoutLblPos\">";

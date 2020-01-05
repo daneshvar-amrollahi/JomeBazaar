@@ -55,7 +55,7 @@ public:
 	Seller* findSeller(string username);
 	Buyer* findBuyer(string username);
 
-	vector <string> getMyOffers(vector <string> query);
+	vector < vector<string> > getMyOffers(vector <string> query);
 
 	void changeOffer(vector <string> query);
 
