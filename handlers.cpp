@@ -710,3 +710,22 @@ Response *AddToCartHandler::callback(Request *req)
 	return res;
 }
 
+Response *GoToCartHandler::callback(Request *req)
+{
+	Response *res = new Response;
+	res->setHeader("Content-Type", "text/html");
+	string line = "GET cart";
+	vector <string> ans = shop->getCart(splitBySpace(line));
+	string body = "";
+	body += "<!DOCTYPE html>";
+	body += "<html>";
+	body += "<body style=\"text-align: center;\">";
+	for (int i = 0 ; i < ans.size() ; i++)
+		body += "<p>" + ans[i] + "</p>";
+		
+	body += "</body>";
+	body += "</html>";
+	res->setBody(body);
+	return res;
+}
+

@@ -100,7 +100,7 @@ public:
 
 	Seller* getSellerByOfferId(int id);
 
-	void getCart(vector <string> query);
+	vector <string> getCart(vector <string> query);
 
 	void getWalletCount(vector <string> query);
 
