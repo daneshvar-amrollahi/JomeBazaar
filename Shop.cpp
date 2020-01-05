@@ -1209,7 +1209,7 @@ Seller* Shop::getSellerByOfferId(int id)
 	return NULL;
 }
 
-void Shop::getCart(vector <string> query)
+vector<string> Shop::getCart(vector <string> query)
 {
 	if (!isBuyer(currentUser->getUsername()))
 		throw &permission_denied;
@@ -1220,10 +1220,13 @@ void Shop::getCart(vector <string> query)
 	if (cart.size() == 0)
 	{
 		cout << "Empty" << endl;
-		return;
+		vector <string> ans;
+		return ans;
 	}
 
+	vector <string> ret;
 	cout << "productId | productName | offerId | sellerId | totalPriceConsideringDiscount | amount" << endl; 
+	ret.push_back("productId | productName | offerId | sellerId | totalPriceConsideringDiscount | amount");
 	for (int i = 0 ; i < cart.size() ; i++)
 	{
 		pair< Offer* , pair<int, double> >  current = cart[i];
@@ -1236,8 +1239,10 @@ void Shop::getCart(vector <string> query)
 		int amount = current.second.first;
 		double price = amount * (offer->getUnitPrice());
 
+		ret.push_back(to_string(product_id) + " | " + product_name + " | " + to_string(offer_id) + " | " + to_string(seller_id) + " | " + to_string(price) + " | " + to_string(amount));
 		cout << product_id << " | " << product_name << " | " << offer_id << " | " << seller_id << " | " << price << " | " << amount << endl; 
 	}
+	return ret;
 }
 
 
