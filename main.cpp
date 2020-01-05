@@ -50,7 +50,8 @@ int main(int argc, char **argv)
 		server.get("/login", new ShowPage("static/logincss.html"));
 		server.post("/login", new LoginHandler(&shop)); 
 
-		//server.post("/addToCart", new AddToCartHandler(&shop));
+		server.post("/addToCart", new AddToCartHandler(&shop));
+		server.get("/addToCart", new AddToCartHandler(&shop));
 
 		server.run();
 	}

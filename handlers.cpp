@@ -599,6 +599,7 @@ pair<string, string> getRow(string s)
 
 Response *ShowDetailHandler::callback(Request *req)
 {
+	cout << "Hereeeeeeeeeeeeeee" << endl;
 	Response *res = new Response;
 	res->setHeader("Content-Type", "text/html");
 	string body;
@@ -646,7 +647,7 @@ Response *ShowDetailHandler::callback(Request *req)
     body += "<th>offerId</th>";
     body += "<th>offerUnitPrice</th>";
 	body += "<th>offerAmount</th>";
-	body += "<th>Amount / ProductId</th>";
+	body += "<th>Amount / OfferId / ProductId</th>";
   	body += "</tr>";
 
 	for (int i = 0 ; i < offers.size() ; i++)
@@ -662,14 +663,17 @@ Response *ShowDetailHandler::callback(Request *req)
 		body += "<td>";
 
 		body += "<form align = \"center\" action = \"/addToCart\" method = \"post\">";
-		body += "<select name=\"How Many\">";
+		body += "<select name=\"how_many\">";
 		for (int j = 1 ; j <= amount ;j++)
 		{
 			body += "<option>" + to_string(j) + "</option>"; 
 		}
       	body += "</select>";
-		
-		body += "<input name = \" Product Id \"";
+		string offer_id = current_offer[0];
+		body += "<input name = \"offer_id\"";
+		body += " value = \"" + offer_id + "\" >";
+
+		body += "<input name = \"product_id\"";
 		body += " value = \"" + id + "\" >";
 		body += "<button type=\"submit\">ADD TO CART</button>";
 		body += "</form>";
@@ -701,3 +705,18 @@ Response *ChargeWalletHandler::callback(Request *req)
 	res = Response::redirect("/buyerHome");
 	return res;
 }
+
+Response *AddToCartHandler::callback(Request *req)
+{
+	Response *res = new Response;
+	string cnt = req->getBodyParam("how_many");
+	string offer_id = req->getBodyParam("offer_id");
+	string product_id = req->getBodyParam("product_id");
+	string line = "POST addToCart ? offerId " + offer_id + " amount " + cnt;
+	executeQuery(line, shop);
+
+	cout << "Added to cart" << endl;
+	res = Response::redirect("/buyerHome");
+	return res;
+}
+

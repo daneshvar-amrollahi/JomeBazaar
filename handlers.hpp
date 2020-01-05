@@ -106,4 +106,13 @@ class LoginHandler: public RequestHandler
     LoginHandler(Shop* _shop) {shop = _shop; }
     Response *callback(Request *);
 };
+
+class AddToCartHandler: public RequestHandler
+{
+  private:
+    Shop* shop;
+  public:
+    AddToCartHandler(Shop* _shop) {shop = _shop; }
+    Response *callback(Request *);
+};
 #endif
