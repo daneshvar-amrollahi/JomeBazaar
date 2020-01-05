@@ -340,28 +340,7 @@ void executeQuery(string line, Shop *shop)
 	cout << "Bad Request" << endl;
 }
 
-Response *RandomNumberHandler::callback(Request *req)
-{
-	Response *res = new Response;
-	res->setHeader("Content-Type", "text/html");
-	string body;
-	body += "<!DOCTYPE html>";
-	body += "<html>";
-	body += "<body style=\"text-align: center;\">";
-	body += "<h1>AP HTTP</h1>";
-	body += "<p>";
-	body += "a random number in [1, 10] is: ";
-	body += to_string(rand() % 10 + 1);
-	body += "</p>";
-	body += "<p>";
-	body += "SeddionId: ";
-	body += req->getSessionId();
-	body += "</p>";
-	body += "</body>";
-	body += "</html>";
-	res->setBody(body);
-	return res;
-}
+
 
 Response *LoginHandler::callback(Request *req)
 {
@@ -476,7 +455,17 @@ Response *BuyerHomeHandler::callback(Request *req)
 		body += "<a href = \"/productDetails?id=" + id + "\">" + product_info + "</a>";
 		body += "<br/>";
 	}
-	body += "<br/>";
+
+
+	body += "</br> </br>";
+	body += "<form align=\"center\" name=\"goto_cart_form\" method=\"post\" action=\"/goToCart\">";
+	body += "<label class=\"logoutLblPos\">";
+	body += "<input name=\"goto_cart\" type=\"submit\" id=\"goto_submit\" value=\"GO TO CART\">";
+	body += "</label>";
+	body += "</form>";
+
+
+	body += "</br> </br>";
 	body += "<form align=\"center\" name=\"log_out_form\" method=\"post\" action=\"/logout\">";
 	body += "<label class=\"logoutLblPos\">";
 	body += "<input name=\"log_out\" type=\"submit\" id=\"log_out_submit\" value=\"Log Out\">";
@@ -536,6 +525,7 @@ Response *SellerHomeHandler::callback(Request *req)
 	body += "<input name=\"log_out\" type=\"submit\" id=\"log_out_submit\" value=\"Log Out\">";
 	body += "</label>";
 	body += "</form>";
+
 	body += "</body>";
 	body += "</html>";
 	res->setBody(body);
