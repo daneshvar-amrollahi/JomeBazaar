@@ -616,7 +616,6 @@ pair<string, string> getRow(string s)
 
 Response *ShowDetailHandler::callback(Request *req)
 {
-	cout << "Hereeeeeeeeeeeeeee" << endl;
 	Response *res = new Response;
 	res->setHeader("Content-Type", "text/html");
 	string body;
@@ -687,11 +686,12 @@ Response *ShowDetailHandler::callback(Request *req)
 		}
       	body += "</select>";
 		string offer_id = current_offer[0];
-		body += "<input name = \"offer_id\"";
+		body += "<input name = \"offer_id\" type = \"hidden\"";
 		body += " value = \"" + offer_id + "\" >";
 
-		body += "<input name = \"product_id\"";
+		body += "<input name = \"product_id\" type = \"hidden\" ";
 		body += " value = \"" + id + "\" >";
+
 		body += "<button type=\"submit\">ADD TO CART</button>";
 		body += "</form>";
 
@@ -716,7 +716,6 @@ Response *ChargeWalletHandler::callback(Request *req)
 	cout << "Value to charge is " << value << endl;
 	string line = "POST chargeWallet ? amount " + value;
 	executeQuery(line, shop);
-
 
 	cout << "executeddd" << endl;
 	res = Response::redirect("/buyerHome");
