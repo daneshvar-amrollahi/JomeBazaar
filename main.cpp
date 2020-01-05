@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 
 		server.post("/addToCart", new AddToCartHandler(&shop));
 		server.get("/addToCart", new AddToCartHandler(&shop));
-
+		 
 		server.run();
 	}
 	catch (Server::Exception ex)
