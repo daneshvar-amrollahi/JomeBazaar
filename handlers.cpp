@@ -616,7 +616,7 @@ Response *ShowDetailHandler::callback(Request *req)
 	for (int i = 0 ; i < ans.size() ; i++)
 		cout << ans[i] << endl;
 
-	body += "<div style=\"overflow-x:auto;\">";
+	body += "<div style=\"overflow-x:auto;\" text-align: center align = \"center\">";
 	body += "<table>";
 
 	body += "<tr>";
@@ -634,13 +634,31 @@ Response *ShowDetailHandler::callback(Request *req)
     
 	body += "</table>";
 	body += "</div>";
-	/*
-	for (int i = 0 ; i < ans.size() ; i++)
-	{
-		pair <string, string> cur = getRow(ans[i]);
-		body += "<p>" + cur.first + " $$ " + cur.second + "</p>";
-	}*/
-	
+
+	body += "</br> </br> </br>";
+ 
+
+	line = "GET offersOnProduct ? productId " + id;
+	vector < vector<string> > offers = shop->getOffersOnProduct(splitBySpace(line));
+
+
+	body += "<div style=\"overflow-x:auto;\" text-align: center align = \"center\">";
+	body += "<table>";
+
+	body += "<tr>";
+    body += "<th>offerId</th>";
+    body += "<th>offerUnitPrice</th>";
+	body += "<th>offerAmount</th>";
+	body += "<th>wantedAmount</th>";
+	body += "<th>Button</th>";
+  	body += "</tr>";
+
+
+	  
+	body += "</table>";
+	body += "</div>";
+
+
 	body += "</body>";
 	body += "</html>";
 	res->setBody(body);

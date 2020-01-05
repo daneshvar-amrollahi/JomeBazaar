@@ -64,7 +64,7 @@ public:
 
 	void getOffers(vector <string> query);
 
-	void getOffersOnProduct(vector <string> query);
+	vector < vector<string> >  getOffersOnProduct(vector <string> query);
 
 	string getNameById(int id);
 

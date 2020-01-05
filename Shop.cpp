@@ -662,16 +662,22 @@ void Shop::getOffers(vector <string> query)
 }
 
 
-void printOffersOnProduct(vector <Offer> offers, string name)
+vector < vector<string> > printOffersOnProduct(vector <Offer> offers, string name)
 {
-
+	vector < vector<string> > ret; 
 	cout << "productId | productName | offerId | offerUnitPrice | offerAmount" << endl;
 	for (int i = 0 ; i < offers.size() ; i++)
 	{
 		Offer current_offer = offers[i];
+		vector <string> current;
+		current.push_back(to_string(current_offer.getId()));
+		current.push_back(to_string(current_offer.getUnitPrice()));
+		current.push_back(to_string(current_offer.getAmount()));
+		ret.push_back(current);
 		cout << current_offer.getProductId() << " | " << name << " | " << current_offer.getId() << " | "
 		<< current_offer.getUnitPrice() << " | " << current_offer.getAmount() << endl;
 	}
+	return ret;
 }
 
 string Shop::getNameById(int id)
@@ -688,7 +694,7 @@ string Shop::getNameById(int id)
 	return "product_not_found";
 }
 
-void Shop::getOffersOnProduct(vector <string> query)
+vector< vector<string> > Shop::getOffersOnProduct(vector <string> query)
 {
 	if (query.size() < 5)
 		throw &bad_request;
@@ -716,7 +722,7 @@ void Shop::getOffersOnProduct(vector <string> query)
 	if (name == "product_not_found")
 		throw &not_found;
 	sort(offers_on_product.begin(), offers_on_product.end(), cmp1);
-	printOffersOnProduct(offers_on_product, name);
+	return printOffersOnProduct(offers_on_product, name);
 }
 
 bool Shop::isMobile(int id)
