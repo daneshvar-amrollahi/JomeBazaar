@@ -745,8 +745,6 @@ Response *SubmitCartHandler::callback(Request *req)
 	Response *res = new Response;
 	string line = "POST submitCart";
 
-	cout << "HEREEEEEEEEEEEEEEEEEEEEEEEEEe" << endl;
-
 	executeQuery(line, shop);
 	cout << "Cart Submitted" << endl;
 	res = Response::redirect("/buyerHome");
