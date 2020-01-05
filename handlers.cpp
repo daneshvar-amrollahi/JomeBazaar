@@ -701,5 +701,3 @@ Response *ChargeWalletHandler::callback(Request *req)
 	res = Response::redirect("/buyerHome");
 	return res;
 }
-
-//Testing my vpn
