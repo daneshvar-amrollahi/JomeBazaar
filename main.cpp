@@ -51,14 +51,13 @@ int main(int argc, char **argv)
 		server.post("/login", new LoginHandler(&shop)); 
 
 		server.post("/addToCart", new AddToCartHandler(&shop));
-<<<<<<< HEAD
+
 		server.get("/addToCart", new AddToCartHandler(&shop));
 		 
-=======
 
 		server.post("/goToCart", new GoToCartHandler(&shop));
 
->>>>>>> 8b8604d64c52cbd0cdda2523264433f7f17ca996
+
 		server.run();
 	}
 	catch (Server::Exception ex)
