@@ -722,10 +722,28 @@ Response *GoToCartHandler::callback(Request *req)
 	body += "<body style=\"text-align: center;\">";
 	for (int i = 0 ; i < ans.size() ; i++)
 		body += "<p>" + ans[i] + "</p>";
-		
+	
+
+	body += "</br> </br>";
+	body += "<form align=\"center\" name=\"submit_cart_form\" method=\"post\" action=\"/submitCart\">";
+	body += "<label class=\"logoutLblPos\">";
+	body += "<input name=\"submit_cart\" type=\"submit\" id=\"submit_cart\" value=\"SUBMIT CART\">";
+	body += "</label>";
+	body += "</form>";
+
+
 	body += "</body>";
 	body += "</html>";
 	res->setBody(body);
 	return res;
 }
 
+Response *SubmitCartHandler::callback(Request *req)
+{
+	Response *res = new Response;
+	string line = "POST submitCart";
+	executeQuery(line, shop);
+	cout << "Cart Submitted" << endl;
+	res = Response::redirect("/buyerHome");
+	return res;
+}

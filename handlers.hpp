@@ -125,4 +125,13 @@ class GoToCartHandler: public RequestHandler
     Response *callback(Request *);
 };
 
+class SubmitCartHandler: public RequestHandler
+{
+  private:
+    Shop* shop;
+  public:
+    SubmitCartHandler(Shop* _shop) {shop = _shop; }
+    Response *callback(Request *);
+};
+
 #endif
