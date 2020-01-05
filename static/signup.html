@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <html>
 
-<body>
+<head>
+  <style>
+  .custom-select {
+  position: relative;
+  font-family: Arial;
+  }
+  
+  .select-selected {
+  background-color: #9E9E9E;
+}
+    
+  </style>
+</head>
+
+<body style="text-align: center;" bgcolor = "#757575">
+
+
   <h1>JomeBazaar</h1>
-  <h2>Signup</h2>
-  <div>
+  <h2>SIGN UP</h2>
+  <div style="background-color: #BDBDBD; padding: 1%; max-width: 300px; border-radius: 3px; margin: auto; ">
     <form action="/signup" method="post">
-      <input name="email" type="text" placeholder="Email">
+      <input name="email" type="text" placeholder="Email" style="display:block; margin: auto; margin-bottom: 10px; padding: 5px; width: 94%;">
       <br />
-      <input name="username" type="text" placeholder="Username" />
+      <input name="username" type="text" placeholder="Username" style="display:block; margin: auto; margin-bottom: 10px; padding: 5px; width: 94%;" />
       <br />
-      <input name="password" type="password" placeholder="Password" />
+      <input name="password" type="password" placeholder="Password" style="display:block; margin: auto; margin-bottom: 10px; padding: 5px; width: 94%;"/>
       <br />
-      <input name="rpassword" type="password" placeholder="Repeat Password" />
+      <input name="rpassword" type="password" placeholder="Repeat Password" style="display:block; margin: auto; margin-bottom: 10px; padding: 5px; width: 94%;"/>
       <br />
+      <div class="custom-select">
       <select name="type">
         <option name="buyer" value="buyer">Buyer</option>
         <option name="seller" value="seller">Seller</option>
       </select>
+      </div>
+
+    
       <br /> <br />
-      <button type="submit">SIGN UP</button>
+      <button type="submit" style="display:block; width: 100%; padding: 7px;">SIGN UP</button>
     </form>
   </div>
 </body>
+</html>
+
 
 </html>

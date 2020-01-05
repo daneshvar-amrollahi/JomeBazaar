@@ -431,13 +431,13 @@ Response *BuyerHomeHandler::callback(Request *req)
 	string body;
 	body += "<!DOCTYPE html>";
 	body += "<html>";
-	body += "<body style=\"text-align: center;\">";
+	body += "<body style=\"text-align: center;\" bgcolor = \"#BDBDBD\">";
 	body += "<h1>Buyer Homepage</h1>";
 	body += "<img src=\"/home.png\" style=\"width:5%;\">";
 	body += "<br />";
-	body += "<a href=\"/cart\">Go to cart</a>";
+	body += "<a href=\"/goToCart\">GO TO CART</a>";
 	body += "<br />";
-	body += "<a href=\"/wallet\">Go to wallet page</a>";
+	body += "<a href=\"/wallet\">Go TO WALLET PAGE</a>";
 	body += "<br />";
 
 	vector <string> q;
@@ -458,11 +458,13 @@ Response *BuyerHomeHandler::callback(Request *req)
 
 
 	body += "</br> </br>";
+	/*
 	body += "<form align=\"center\" name=\"goto_cart_form\" method=\"post\" action=\"/goToCart\">";
 	body += "<label class=\"logoutLblPos\">";
 	body += "<input name=\"goto_cart\" type=\"submit\" id=\"goto_submit\" value=\"GO TO CART\">";
 	body += "</label>";
 	body += "</form>";
+	*/
 
 
 	body += "</br> </br>";
@@ -742,6 +744,9 @@ Response *SubmitCartHandler::callback(Request *req)
 {
 	Response *res = new Response;
 	string line = "POST submitCart";
+
+	cout << "HEREEEEEEEEEEEEEEEEEEEEEEEEEe" << endl;
+
 	executeQuery(line, shop);
 	cout << "Cart Submitted" << endl;
 	res = Response::redirect("/buyerHome");

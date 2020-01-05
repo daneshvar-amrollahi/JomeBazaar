@@ -55,9 +55,10 @@ int main(int argc, char **argv)
 		server.get("/addToCart", new AddToCartHandler(&shop));
 		 
 
-		server.post("/goToCart", new GoToCartHandler(&shop));
+		server.get("/goToCart", new GoToCartHandler(&shop));
 
 		server.post("/submitCart", new SubmitCartHandler(&shop));
+
 
 		server.run();
 	}
