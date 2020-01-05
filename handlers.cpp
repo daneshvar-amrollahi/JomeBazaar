@@ -646,32 +646,34 @@ Response *ShowDetailHandler::callback(Request *req)
     body += "<th>offerId</th>";
     body += "<th>offerUnitPrice</th>";
 	body += "<th>offerAmount</th>";
-	body += "<th>wantedAmount</th>";
-	body += "<th>Button</th>";
+	body += "<th>Submit</th>";
   	body += "</tr>";
 
 	for (int i = 0 ; i < offers.size() ; i++)
 	{
 		vector <string> current_offer = offers[i];
 		body += "<tr>";
+		int amount = stoi(current_offer[2]);
 		for (int j = 0 ; j < current_offer.size() ; j++)
 		{
 			body += "<td>" + current_offer[j] + "</td>";
 		}
 
-		body += "<td> <input name=\"wanted_amount\" type=\"text\" placeholder=\"How many?\" /> </td>";
-		body += "<td> ";
-	
-	  	body += "<form name=\"add_to_cart\" method=\"post\" action=\"/addToCart\">";
-    	body += "<label class=\"addtocartLblPos\">";
-
-      	body += "<input name=\"how_many\" type=\"submit\" product_id=" + id +    "\" value=\"Add To Cart\">";
-    	body += "</label>";
-  		body += "</form>";
-
 		body += "<td>";
 
-		body += "</tr>";
+		body += "<form align = \"center\" action = \"/addToCart\" method = \"post\">";
+		body += "<select name=\"How Many\">";
+		for (int j = 1 ; j <= amount ;j++)
+		{
+			body += "<option>" + to_string(j) + "</option>"; 
+		}
+      	body += "</select>";
+		
+		body += "<input name = \" Product Id \" + id = \" " + id + " \" "; 
+		body += "<button type=\"submit\">ADD TO CART</button>";
+		body += "</form>";
+
+		body += "</td>";
 
 	}
 	  
