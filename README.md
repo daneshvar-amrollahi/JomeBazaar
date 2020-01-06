@@ -1,2 +1,4 @@
-An online shop written with C++ and HTML
+An online shop written with in C++/HTML/CSS
+
 AI: Detecting inappropriate comments using Naive Bayes algorithm. 
+
