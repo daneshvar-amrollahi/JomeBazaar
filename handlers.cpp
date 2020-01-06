@@ -530,6 +530,36 @@ Response *SellerHomeHandler::callback(Request *req)
 	string body;
 	body += "<!DOCTYPE html>";
 	body += "<html>";
+
+	body += "<head>";
+	body += "<style>";
+		body += "#offers {";
+  	body += "font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif";
+  	body += "border-collapse: collapse";
+  	body += "width: 100%";
+	body += "}";
+
+	body += "#offers td, #offers th {";
+  	body += "border: 1px solid #ddd";
+  	body += "padding: 8px";
+	body += "}";
+
+	body += "#offers tr:nth-child(even){background-color: #f2f2f2;}";
+
+	body += "#offers tr:hover {background-color: #ddd;}";
+
+	body += "#customers th {";
+  	body += "padding-top: 12px;";
+  	body += "padding-bottom: 12px;";
+  	body += "text-align: left;";
+  	body += "background-color: #4CAF50;";
+  	body += "color: white;";
+	body += "}";
+
+	body += "</style>";
+	body += "</head>";
+
+
 	body += "<body style=\"text-align: center;\" bgcolor = #BDBDBD >";
 	body += "<h1>Seller Homepage</h1>";
 	body += "<img src=\"/home.png\" style=\"width:5%;\">";
@@ -544,7 +574,9 @@ Response *SellerHomeHandler::callback(Request *req)
 	vector < vector <string> > offers = shop->getMyOffers(query);
 
 	body += "<div style=\"overflow-x:auto;\" text-align: center align = \"center\">";
-	body += "<table>";
+	body += "<table id = \"offers\">";
+
+
 
 	body += "<tr>";
     body += "<th>ProductId</th>";
