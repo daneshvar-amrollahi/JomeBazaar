@@ -440,12 +440,14 @@ Response *BuyerHomeHandler::callback(Request *req)
     body += "text-decoration: none";
     body += "}";
 	
-	body += "a{font-size: 20px;}";
+	body += "*{font-size: 20px; font-family: 'CustomFont', amaticsc-regular; font-weight:normal;font-style:normal;}";
+	body += "a{font-size: 20px; font-family: 'CustomFont', amaticsc-regular; font-weight:normal;font-style:normal;}";
 
 	body += "a:visited {";
     body += "color: #212121";
     body += "background-color:transparent";
     body += "text-decoration: none";
+	body += "{font-size: 20px; font-family: 'CustomFont', amaticsc-regular; font-weight:normal;font-style:normal;}";
     body += "}";
 
 	body += ".centered-wrapper {";
@@ -636,7 +638,11 @@ Response *ShowDetailHandler::callback(Request *req)
 	string body;
 	body += "<!DOCTYPE html>";
 	body += "<html>";
+	body += "<head><style>";
+	body += "a{font-size: 20px; font-family: 'CustomFont', amaticsc-regular; font-weight:normal;font-style:normal;}";
+	body += "</style> </head>";
 	body += "<body style=\"text-align: center;\">";
+
 	string id = req->getQueryParam("id");
 	string line = "GET productDetail ? productId " + id;
 	cout << "Generated query is " << line << endl;

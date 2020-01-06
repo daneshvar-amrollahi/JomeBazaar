@@ -64,6 +64,7 @@ int main(int argc, char **argv)
 	}
 	catch (Server::Exception ex)
 	{
+		cout << "error occured" << endl;
 		cerr << ex.what() << endl;
 	}
 	return 0;

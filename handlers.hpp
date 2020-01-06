@@ -125,6 +125,8 @@ class GoToCartHandler: public RequestHandler
     Response *callback(Request *);
 };
 
+
+
 class SubmitCartHandler: public RequestHandler
 {
   private:
