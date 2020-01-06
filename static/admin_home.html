@@ -3,20 +3,40 @@
 
 <head>
   <style>
-    body {background-color:#455A64;}
-    h1   {
+    body {
+      background-color: #455A64;
+    }
+
+    h1 {
       font-family: 'CustomFont', amaticsc-regular;
-      font-weight:normal;
-  font-style:normal;
-      color: #FFFFFF;}
-    h2    {
+      font-weight: normal;
+      font-style: normal;
+      color: #FFFFFF;
+    }
+
+    h2 {
       font-family: 'CustomFont', amaticsc-regular;
-      font-weight:normal;
-  font-style:normal;
-      color: #FFFFFF;}
-    button {background-color: #FFFFFF;}
-    select {background-color: #FFFFFF};
-    </style>
+      font-weight: normal;
+      font-style: normal;
+      color: #FFFFFF;
+    }
+
+    .button {
+        background-color: #616161;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
+    select {
+      background-color: #FFFFFF
+    }
+
+    ;
+  </style>
 </head>
 
 <body style="text-align: center;">
@@ -26,18 +46,18 @@
   <h2>Admin Home Page</h2>
 
   <div>
-    <form align = "center" action="/adminUp" method="post" enctype="multipart/form-data">
+    <form align="center" action="/adminUp" method="post" enctype="multipart/form-data">
       <input name="file_name" type="text" placeholder="File Name" />
       <select name="Product Type">
         <option name="mobile" value="mobile">mobile</option>
         <option name="car" value="car">car</option>
         <option name="tv" value="tv">tv</option>
       </select>
-      <br/> <br/>
+      <br /> <br />
       <input type="file" name="file">
       </br> </br>
       <button type="submit">Upload</button>
-      <br/> <br/>
+      <br /> <br />
     </form>
   </div>
 
