@@ -3,6 +3,37 @@
 
 <head>
   <style>
+    .myButton {
+      box-shadow: inset 0px 0px 3px 0px #91b8b3;
+      background: linear-gradient(to bottom, #768d87 5%, #607D8B 100%);
+      background-color:#607D8B;
+      border-radius: 4px;
+      border: 2px solid#607D8B;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      font-family: Verdana;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 7px 23px;
+      text-decoration: none;
+      text-shadow: 0px -1px 0px #2b665e;
+    }
+
+    .myButton:hover {
+      background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+      background-color: #6c7c7c;
+    }
+
+    .myButton:active {
+      position: relative;
+      top: 1px;
+    }
+
+
+
+
+
     body {
       background-color: #455A64;
     }
@@ -22,14 +53,14 @@
     }
 
     .button {
-        background-color: #616161;
-        border: none;
-        color: white;
-        padding: 16px 32px;
-        text-decoration: none;
-        margin: 4px 2px;
-        cursor: pointer;
-      }
+      background-color: #616161;
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
 
     select {
       background-color: #FFFFFF
@@ -56,14 +87,15 @@
       <br /> <br />
       <input type="file" name="file">
       </br> </br>
-      <button type="submit">Upload</button>
+      <button type="submit" class="myButton">Upload</button>
       <br /> <br />
     </form>
   </div>
 
   <form align="center" name="log_out_form" method="post" action="/logout">
     <label class="logoutLblPos">
-      <input name="log_out" type="submit" id="log_out_submit" value="Log Out">
+      <!-- <input name="log_out" type="submit" id="log_out_submit" value="Log Out"> -->
+      <button type="submit" class="myButton">Log Out</button>
     </label>
   </form>
 
