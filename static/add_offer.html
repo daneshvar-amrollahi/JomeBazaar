@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html>
 
-<body>
+<head>
+  <style>
+  .custom-select {
+  position: relative;
+  font-family: Arial;
+  }
+  
+  .select-selected {
+  background-color: #9E9E9E;
+}
+    
+  </style>
+</head>
+
+<body style="text-align: center;" bgcolor = "#757575">
   <h1>JomeBazaar</h1>
   <h2>Add Offer</h2>
-  <div>
+  <div style="background-color: #BDBDBD; padding: 1%; max-width: 300px; border-radius: 3px; margin: auto; ">
     <form action="/addOffer" method="post">
-      <input name="productId" type="text" placeholder="ProductId">
+      <input name="productId" type="text" placeholder="ProductId" style="display:block; margin: auto; margin-bottom: 10px; padding: 5px; width: 94%;" >
       <br />
-      <input name="offerUnitPrice" type="text" placeholder="Offer Unit Price" />
+      <input name="offerUnitPrice" type="text" placeholder="Offer Unit Price" style="display:block; margin: auto; margin-bottom: 10px; padding: 5px; width: 94%;" />
       <br />
-      <input name="offerAmount" type="password" placeholder="Offer Amount" />
+      <input name="offerAmount" type="password" placeholder="Offer Amount" style="display:block; margin: auto; margin-bottom: 10px; padding: 5px; width: 94%;" />
       <br />
       
-      <button type="submit">ADD OFFER</button>
+      <button type="submit" style="display:block; width: 100%; padding: 7px;">ADD OFFER</button>
     </form>
   </div>
 </body>
