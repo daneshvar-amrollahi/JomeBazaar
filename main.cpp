@@ -24,7 +24,6 @@ int main(int argc, char **argv)
 		server.get("/adminHome", new ShowPage("static/admin_home.html"));
 
 
-		//server.get("/sellerHome", new ShowPage("static/seller_home.html")); //bayad comment she, bejash seller_home_handler bezari
 		server.get("/sellerHome", new SellerHomeHandler(&shop));
 
 		server.get("/buyerHome", new BuyerHomeHandler(&shop));

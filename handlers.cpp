@@ -340,18 +340,16 @@ void executeQuery(string line, Shop *shop)
 	cout << "Bad Request" << endl;
 }
 
-
-
 Response *LoginHandler::callback(Request *req)
 {
 	Response *res = new Response;
 	string email = req->getBodyParam("email");
 	string password = req->getBodyParam("password");
-	
+
 	string line = "POST login ? email " + email + " password " + password;
 	executeQuery(line, shop);
 	res->setSessionId("SID");
-	
+
 	User *currentUser = shop->getCurrentUser();
 	if (currentUser == NULL)
 		res = Response::redirect("/nobodyLoggedIn");
@@ -417,8 +415,6 @@ Response *UploadHandler::callback(Request *req)
 	string line = "POST importProducts ? type " + type + " filePath " + name;
 	cout << "Generated query is: " << line << endl;
 	executeQuery(line, shop);
-	
-	
 
 	Response *res = Response::redirect("/adminHome");
 	return res;
@@ -435,24 +431,24 @@ Response *BuyerHomeHandler::callback(Request *req)
 	body += "<head>";
 	body += "<style>";
 	body += "a:link {";
-    body += "color: #212121";
-    body += "background-color:transparent";
-    body += "text-decoration: none";
-    body += "}";
-	
+	body += "color: #212121";
+	body += "background-color:transparent";
+	body += "text-decoration: none";
+	body += "}";
+
 	body += "*{font-size: 20px; font-family: 'CustomFont', amaticsc-regular; font-weight:normal;font-style:normal;}";
 	body += "a{font-size: 20px; font-family: 'CustomFont', amaticsc-regular; font-weight:normal;font-style:normal;}";
 
 	body += "a:visited {";
-    body += "color: #212121";
-    body += "background-color:transparent";
-    body += "text-decoration: none";
+	body += "color: #212121";
+	body += "background-color:transparent";
+	body += "text-decoration: none";
 	body += "{font-size: 20px; font-family: 'CustomFont', amaticsc-regular; font-weight:normal;font-style:normal;}";
-    body += "}";
+	body += "}";
 
 	body += ".centered-wrapper {";
-    body += "position: relative;";
-    body += "text-align: center;";
+	body += "position: relative;";
+	body += "text-align: center;";
 	body += "}";
 	body += "</style>";
 
@@ -467,22 +463,20 @@ Response *BuyerHomeHandler::callback(Request *req)
 	body += "<a href=\"/wallet\">Go TO WALLET PAGE</a>";
 	body += "<br />";
 
-	vector <string> q;
+	vector<string> q;
 	q.push_back("GET");
 	q.push_back("getProducts");
-	vector < pair<int, string> > products = shop->getProducts(q);
+	vector<pair<int, string>> products = shop->getProducts(q);
 	body += "<br/>";
-	for (int i = 0 ; i < products.size() ; i++)
+	for (int i = 0; i < products.size(); i++)
 	{
 		string id = to_string(products[i].first);
 
-		string product_info = id + " | " + products[i].second; 
+		string product_info = id + " | " + products[i].second;
 
-	
 		body += "<a href = \"/productDetails?id=" + id + "\">" + product_info + "</a>";
 		body += "<br/>";
 	}
-
 
 	body += "</br> </br>";
 	/*
@@ -492,7 +486,6 @@ Response *BuyerHomeHandler::callback(Request *req)
 	body += "</label>";
 	body += "</form>";
 	*/
-
 
 	body += "</br> </br>";
 	body += "<form align=\"center\" name=\"log_out_form\" method=\"post\" action=\"/logout\">";
@@ -507,7 +500,6 @@ Response *BuyerHomeHandler::callback(Request *req)
 	return res;
 }
 
-
 Response *AddOfferHandler::callback(Request *req)
 {
 	string productId = req->getBodyParam("productId");
@@ -518,7 +510,7 @@ Response *AddOfferHandler::callback(Request *req)
 	cout << "Generated query is " << line << endl;
 	executeQuery(line, shop);
 	Response *res;
-	
+
 	res = Response::redirect("/sellerHome");
 	return res;
 }
@@ -533,15 +525,15 @@ Response *SellerHomeHandler::callback(Request *req)
 
 	body += "<head>";
 	body += "<style>";
-		body += "#offers {";
-  	body += "font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif";
-  	body += "border-collapse: collapse";
-  	body += "width: 100%";
+	body += "#offers {";
+	body += "font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif";
+	body += "border-collapse: collapse";
+	body += "width: 100%";
 	body += "}";
 
 	body += "#offers td, #offers th {";
-  	body += "border: 1px solid #ddd";
-  	body += "padding: 8px";
+	body += "border: 1px solid #ddd";
+	body += "padding: 8px";
 	body += "}";
 
 	body += "#offers tr:nth-child(even){background-color: #f2f2f2;}";
@@ -549,16 +541,15 @@ Response *SellerHomeHandler::callback(Request *req)
 	body += "#offers tr:hover {background-color: #ddd;}";
 
 	body += "#customers th {";
-  	body += "padding-top: 12px;";
-  	body += "padding-bottom: 12px;";
-  	body += "text-align: left;";
-  	body += "background-color: #4CAF50;";
-  	body += "color: white;";
+	body += "padding-top: 12px;";
+	body += "padding-bottom: 12px;";
+	body += "text-align: left;";
+	body += "background-color: #4CAF50;";
+	body += "color: white;";
 	body += "}";
 
 	body += "</style>";
 	body += "</head>";
-
 
 	body += "<body style=\"text-align: center;\" bgcolor = #BDBDBD >";
 	body += "<h1>Seller Homepage</h1>";
@@ -568,28 +559,26 @@ Response *SellerHomeHandler::callback(Request *req)
 	body += "<br />";
 
 	//GET my offers
-	vector <string> query;
+	vector<string> query;
 	query.push_back("GET");
 	query.push_back("myOffers");
-	vector < vector <string> > offers = shop->getMyOffers(query);
+	vector<vector<string>> offers = shop->getMyOffers(query);
 
 	body += "<div style=\"overflow-x:auto;\" text-align: center align = \"center\">";
 	body += "<table id = \"offers\">";
 
-
-
 	body += "<tr>";
-    body += "<th>ProductId</th>";
-    body += "<th>OfferId</th>";
+	body += "<th>ProductId</th>";
+	body += "<th>OfferId</th>";
 	body += "<th>OfferUnitPrice</th>";
 	body += "<th>OfferAmount</th>";
-  	body += "</tr>";
+	body += "</tr>";
 
-	for (int i = 0 ; i < offers.size() ; i++)
+	for (int i = 0; i < offers.size(); i++)
 	{
-		vector <string> current = offers[i];
+		vector<string> current = offers[i];
 		body += "<tr>";
-		for (int j = 0 ; j < current.size() ; j++)
+		for (int j = 0; j < current.size(); j++)
 			body += "<td>" + current[j] + "</td>";
 		body += "</tr>";
 	}
@@ -618,20 +607,20 @@ Response *WalletHandler::callback(Request *req)
 	body += "<body style=\"text-align: center;\">";
 	body += "<h1>Wallet</h1>";
 
-	User* currentUser = shop->getCurrentUser();
-	vector <double> wal = currentUser->getWallet();
-	
+	User *currentUser = shop->getCurrentUser();
+	vector<double> wal = currentUser->getWallet();
+
 	cout << "Wallet is: " << endl;
-	for (int i = 0 ; i < wal.size() ; i++)
+	for (int i = 0; i < wal.size(); i++)
 		cout << wal[i] << " ";
 	cout << endl;
 
 	body += "<p> Current balance is " + to_string(wal.back()) + "</p>";
-	
+
 	//box bezar charge kone
 	body += "<form action=\"/chargeWallet\" method=\"post\">";
-    body += "<input name=\"chargeamount\" type=\"text\" placeholder=\"Enter value for charge\">";
-    body += "<br />";
+	body += "<input name=\"chargeamount\" type=\"text\" placeholder=\"Enter value for charge\">";
+	body += "<br />";
 	body += "<button type=\"submit\">Add to wallet</button>";
 	body += "</form>";
 
@@ -646,7 +635,7 @@ pair<string, string> getRow(string s)
 {
 	string a = "";
 	int i = 0;
-	for (i = 0 ; i < s.size() ; i++)
+	for (i = 0; i < s.size(); i++)
 	{
 		if (s[i] == ':')
 		{
@@ -656,7 +645,7 @@ pair<string, string> getRow(string s)
 		a += s[i];
 	}
 	string b = "";
-	for (i ; i < s.size() ; i++)
+	for (i; i < s.size(); i++)
 		b += s[i];
 	if (b == "")
 		b = a, a = "Name";
@@ -678,22 +667,21 @@ Response *ShowDetailHandler::callback(Request *req)
 	string id = req->getQueryParam("id");
 	string line = "GET productDetail ? productId " + id;
 	cout << "Generated query is " << line << endl;
-	vector <string> query = splitBySpace(line);
-	vector <string> ans = shop->getProductDetail(query);
-
+	vector<string> query = splitBySpace(line);
+	vector<string> ans = shop->getProductDetail(query);
 
 	cout << "Answer is " << endl;
-	for (int i = 0 ; i < ans.size() ; i++)
+	for (int i = 0; i < ans.size(); i++)
 		cout << ans[i] << endl;
 
 	body += "<div style=\"overflow-x:auto;\" text-align: center align = \"center\">";
 	body += "<table>";
 
 	body += "<tr>";
-    body += "<th>Property</th>";
-    body += "<th>Value</th>";
-  	body += "</tr>";
-	for (int i = 0 ; i < ans.size() ; i++)
+	body += "<th>Property</th>";
+	body += "<th>Value</th>";
+	body += "</tr>";
+	for (int i = 0; i < ans.size(); i++)
 	{
 		body += "<tr>";
 		pair<string, string> cur = getRow(ans[i]);
@@ -701,30 +689,30 @@ Response *ShowDetailHandler::callback(Request *req)
 		body += "<td>" + cur.second + "</td>";
 		body += "</tr>";
 	}
-    
+
 	body += "</table>";
 	body += "</div>";
 
 	body += "</br> </br> </br>";
- 
+
 	line = "GET offersOnProduct ? productId " + id;
-	vector < vector<string> > offers = shop->getOffersOnProduct(splitBySpace(line));
+	vector<vector<string>> offers = shop->getOffersOnProduct(splitBySpace(line));
 	body += "<div style=\"overflow-x:auto;\" text-align: center align = \"center\">";
 	body += "<table>";
 
 	body += "<tr>";
-    body += "<th>offerId</th>";
-    body += "<th>offerUnitPrice</th>";
+	body += "<th>offerId</th>";
+	body += "<th>offerUnitPrice</th>";
 	body += "<th>offerAmount</th>";
 	body += "<th>Amount / OfferId / ProductId</th>";
-  	body += "</tr>";
+	body += "</tr>";
 
-	for (int i = 0 ; i < offers.size() ; i++)
+	for (int i = 0; i < offers.size(); i++)
 	{
-		vector <string> current_offer = offers[i];
+		vector<string> current_offer = offers[i];
 		body += "<tr>";
 		int amount = stoi(current_offer[2]);
-		for (int j = 0 ; j < current_offer.size() ; j++)
+		for (int j = 0; j < current_offer.size(); j++)
 		{
 			body += "<td>" + current_offer[j] + "</td>";
 		}
@@ -733,11 +721,11 @@ Response *ShowDetailHandler::callback(Request *req)
 
 		body += "<form align = \"center\" action = \"/addToCart\" method = \"post\">";
 		body += "<select name=\"how_many\">";
-		for (int j = 1 ; j <= amount ;j++)
+		for (int j = 1; j <= amount; j++)
 		{
-			body += "<option>" + to_string(j) + "</option>"; 
+			body += "<option>" + to_string(j) + "</option>";
 		}
-      	body += "</select>";
+		body += "</select>";
 		string offer_id = current_offer[0];
 		body += "<input name = \"offer_id\" type = \"hidden\"";
 		body += " value = \"" + offer_id + "\" >";
@@ -749,12 +737,10 @@ Response *ShowDetailHandler::callback(Request *req)
 		body += "</form>";
 
 		body += "</td>";
-
 	}
-	  
+
 	body += "</table>";
 	body += "</div>";
-
 
 	body += "</body>";
 	body += "</html>";
@@ -770,7 +756,6 @@ Response *ChargeWalletHandler::callback(Request *req)
 	string line = "POST chargeWallet ? amount " + value;
 	executeQuery(line, shop);
 
-	cout << "executeddd" << endl;
 	res = Response::redirect("/buyerHome");
 	return res;
 }
@@ -794,14 +779,13 @@ Response *GoToCartHandler::callback(Request *req)
 	Response *res = new Response;
 	res->setHeader("Content-Type", "text/html");
 	string line = "GET cart";
-	vector <string> ans = shop->getCart(splitBySpace(line));
+	vector<string> ans = shop->getCart(splitBySpace(line));
 	string body = "";
 	body += "<!DOCTYPE html>";
 	body += "<html>";
 	body += "<body style=\"text-align: center;\">";
-	for (int i = 0 ; i < ans.size() ; i++)
+	for (int i = 0; i < ans.size(); i++)
 		body += "<p>" + ans[i] + "</p>";
-	
 
 	body += "</br> </br>";
 	body += "<form align=\"center\" name=\"submit_cart_form\" method=\"post\" action=\"/submitCart\">";
@@ -809,7 +793,6 @@ Response *GoToCartHandler::callback(Request *req)
 	body += "<input name=\"submit_cart\" type=\"submit\" id=\"submit_cart\" value=\"SUBMIT CART\">";
 	body += "</label>";
 	body += "</form>";
-
 
 	body += "</body>";
 	body += "</html>";
