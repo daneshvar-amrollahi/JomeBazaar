@@ -604,7 +604,43 @@ Response *WalletHandler::callback(Request *req)
 	string body;
 	body += "<!DOCTYPE html>";
 	body += "<html>";
-	body += "<body style=\"text-align: center;\">";
+	body += "<head>";
+	body += "<style>";
+	
+	body += ".myButton {";
+    body += "box-shadow: inset 0px 0px 3px 0px #91b8b3";
+    body += "background: linear-gradient(to bottom, #768d87 5%, #607D8B 100%)";
+    body += "background-color:#607D8B";
+    body += "border-radius: 4px";
+    body += "border: 2px solid#607D8B";
+    body += "display: inline-block";
+    body += "cursor: pointer";
+    body += "color: #ffffff";
+    body += "font-family: Verdana";
+    body += "font-size: 15px";
+    body += "font-weight: bold";
+    body += "padding: 7px 23px";
+    body += "text-decoration: none";
+    body += "text-shadow: 0px -1px 0px #2b665e";
+    body += "}";
+
+    body += ".myButton:hover {";
+    body += "background: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%)";
+    body += "background-color: #6c7c7c";
+    body += "}";
+
+    body += ".myButton:active {";
+    body += "position: relative";
+    body += "top: 1px";
+    body += "}";
+
+
+
+	body += "</style>";
+	body += "</head>";
+	body += "<body style=\"text-align: center;\" bgcolor = \"#BDBDBD\">";
+	
+
 	body += "<h1>Wallet</h1>";
 
 	User *currentUser = shop->getCurrentUser();
@@ -621,7 +657,8 @@ Response *WalletHandler::callback(Request *req)
 	body += "<form action=\"/chargeWallet\" method=\"post\">";
 	body += "<input name=\"chargeamount\" type=\"text\" placeholder=\"Enter value for charge\">";
 	body += "<br />";
-	body += "<button type=\"submit\">Add to wallet</button>";
+	body += "<br />";
+	body += "<button type=\"submit\" class = \"myButton\">Add to wallet</button>";
 	body += "</form>";
 
 	body += "</body>";
