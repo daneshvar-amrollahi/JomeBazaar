@@ -698,8 +698,32 @@ Response *ShowDetailHandler::callback(Request *req)
 	body += "<html>";
 	body += "<head><style>";
 	body += "a{font-size: 20px; font-family: 'CustomFont', amaticsc-regular; font-weight:normal;font-style:normal;}";
+
+body += "#details {";
+	body += "font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif";
+	body += "border-collapse: collapse";
+	body += "width: 100%";
+	body += "}";
+
+	body += "#details td, #details th {";
+	body += "border: 1px solid #ddd";
+	body += "padding: 8px";
+	body += "}";
+
+	body += "#details tr:nth-child(even){background-color: #f2f2f2;}";
+
+	body += "#details tr:hover {background-color: #ddd;}";
+
+	body += "#customers th {";
+	body += "padding-top: 12px;";
+	body += "padding-bottom: 12px;";
+	body += "text-align: left;";
+	body += "background-color: #4CAF50;";
+	body += "color: white;";
+	body += "}";
+
 	body += "</style> </head>";
-	body += "<body style=\"text-align: center;\">";
+	body += "<body style=\"text-align: center;\" bgcolor = \"#BDBDBD\">";
 
 	string id = req->getQueryParam("id");
 	string line = "GET productDetail ? productId " + id;
@@ -712,7 +736,7 @@ Response *ShowDetailHandler::callback(Request *req)
 		cout << ans[i] << endl;
 
 	body += "<div style=\"overflow-x:auto;\" text-align: center align = \"center\">";
-	body += "<table>";
+	body += "<table id = \"details\">";
 
 	body += "<tr>";
 	body += "<th>Property</th>";
@@ -735,7 +759,7 @@ Response *ShowDetailHandler::callback(Request *req)
 	line = "GET offersOnProduct ? productId " + id;
 	vector<vector<string>> offers = shop->getOffersOnProduct(splitBySpace(line));
 	body += "<div style=\"overflow-x:auto;\" text-align: center align = \"center\">";
-	body += "<table>";
+	body += "<table id = \"offers\">";
 
 	body += "<tr>";
 	body += "<th>offerId</th>";
@@ -820,7 +844,7 @@ Response *GoToCartHandler::callback(Request *req)
 	string body = "";
 	body += "<!DOCTYPE html>";
 	body += "<html>";
-	body += "<body style=\"text-align: center;\">";
+	body += "<body style=\"text-align: center;\" bgcolor = \"#BDBDBD\">";
 	for (int i = 0; i < ans.size(); i++)
 		body += "<p>" + ans[i] + "</p>";
 
